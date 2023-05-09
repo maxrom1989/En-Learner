@@ -5,11 +5,24 @@
 </header>
 <div class="container">
     <div class="menu-tabs">
-        <ul style="list-style: none; display: flex">
-            <li (click)="setAreaShown('REPHRASE')">Rephrase</li>
-            <li (click)="setAreaShown('MEANINGS')">Meanings</li>
-            <li (click)="setAreaShown('GENERATOR')">Generator</li>
+        <ul>
+            <li class="menu-tab-rephrase"
+                [ngClass]="{ 'selected': selectedComponent === 'RephraseComponent'}" 
+                (click)="navigateToComponent('RephraseComponent')">
+                    Rephrase
+            </li>
+            <li class="menu-tab-meanings"
+            [ngClass]="{ 'selected': selectedComponent === 'MeaningsComponent'}"
+                (click)="navigateToComponent('MeaningsComponent')">
+                    Meanings
+            </li>
+            <li class="menu-tab-generator"
+            [ngClass]="{ 'selected': selectedComponent === 'GeneratorComponent'}" 
+                (click)="navigateToComponent('GeneratorComponent')">
+                    Generator
+                </li>
         </ul>
+        <router-outlet></router-outlet>
         <!-- <p style="display: contents;">
             <input type="radio" name="menu-tab" id="menu-tab-1" value="" (click)="setAreaShown('REPHRASE')">
             <label for="menu-tab-1">Rephrase</label>
@@ -22,20 +35,20 @@
             <input type="radio" name="menu-tab" id="menu-tab-3" value="" (click)="setAreaShown('GENERATOR')">
             <label for="menu-tab-3">Generator</label>
         </p> -->
-        </div>
-    <div class="menu-content">
+    </div>
+    <!-- <div class="menu-content">
         <div class="menu-rephrase" *ngIf="areaShown === 'REPHRASE'">
             <div class="rephrase-method">
                 <div class="radio-buttons">
-                    <input type="radio" name="polite" id="input-polite" value="" checked>
+                    <input type="radio" name="rephrase-method" id="input-polite" value="" checked>
                     <label for="input-polite">POLITE</label>
                 </div>
                 <div class="radio-buttons">
-                    <input type="radio" name="official" id="input-official" value="">
+                    <input type="radio" name="rephrase-method" id="input-official" value="">
                     <label for="input-official">OFFICIAL</label>
                 </div>
                 <div class="radio-buttons">
-                    <input type="radio" name="regular" id="input-regular" value="">
+                    <input type="radio" name="rephrase-method" id="input-regular" value="">
                     <label for="input-regular">REGULAR</label>
                 </div>
             </div>
@@ -54,15 +67,14 @@
                     </button>
                 </div>
                 <div class="output-rephrase">
-                    <!-- <output></output> -->
                     <output>{{baseOutput}}</output>
                     <div class="textarea-button">
                         <button> TO </button>
                     </div>
                 </div>
             </form>
-        </div>
-        <div class="menu-meanings" *ngIf="areaShown === 'MEANINGS'">
+        </div> -->
+        <!-- <div class="menu-meanings" *ngIf="areaShown === 'MEANINGS'">
             <form>
                 <div class="textarea-meanings">
                     <textarea id="textarea-rephrase-1" rows="4" cols="20" placeholder="Введите текст"
@@ -85,8 +97,8 @@
                 </div>
             </form>
 
-        </div>
-        <div class="menu-generator" *ngIf="areaShown === 'GENERATOR'">
+        </div> -->
+        <!-- <div class="menu-generator" *ngIf="areaShown === 'GENERATOR'">
             <div class="generator-method">
                 <div class="radio-buttons">
                     <label for="input-generator">Кол-во повторений:  </label>
@@ -113,6 +125,8 @@
                     </div>
                 </div>
             </form>
-        </div>
+        </div> -->
+        
     </div>
-</div>
+
+

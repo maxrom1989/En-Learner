@@ -1,23 +1,37 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { Routes, RouterModule} from '@angular/router';
 import { AppComponent } from './app.component';
 import { MenuAppComponent } from './menu-app/menu-app.component';
 import { ClipboardAppComponent } from './clipboard-app/clipboard-app.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { RephraseComponent } from './menu-app/rephrase/rephrase.component';
+import { MeaningsComponent } from './menu-app/meanings/meanings.component';
+import { GeneratorComponent } from './menu-app/generator/generator.component';
+
+const routes: Routes = [
+  {path: 'RephraseComponent', component: RephraseComponent},
+  {path: 'MeaningsComponent', component: MeaningsComponent},
+  {path: 'GeneratorComponent', component: GeneratorComponent}
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuAppComponent,
-    ClipboardAppComponent
+    ClipboardAppComponent,
+    RephraseComponent,
+    MeaningsComponent,
+    GeneratorComponent,
   ],
   imports: [
     FormsModule,
     BrowserModule,
     MatButtonToggleModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

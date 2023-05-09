@@ -1,0 +1,28 @@
+<div class="menu-generator">
+    <div class="generator-method">
+        <div class="radio-buttons">
+            <label for="input-generator">Кол-во повторений:  </label>
+            <input type="text" name="polite" id="input-generator" value="" checked>
+        </div>
+    <form>
+        <div class="textarea-generator">
+            <textarea id="textarea-generator" rows="4" cols="20" placeholder="Введите текст" name="textarea-generator"
+                autofocus [(ngModel)]="baseInput" [ngModelOptions]="{standalone: true}"></textarea>
+            <label for="textarea-generator"></label>
+            <div class="textarea-button">
+                <button> TO </button>
+            </div>
+        </div>
+        <div class="button-rephrase">
+            <button (click)="handleRephrase()">
+                Кнопка2
+            </button>
+        </div>
+        <div class="output-rephrase">
+            <output>{{baseOutput}}</output>
+            <div class="textarea-button">
+                <button> TO </button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
-type IAreaShown = 'REPHRASE' | 'MEANINGS' | 'GENERATOR';
+
 
 @Component({
   selector: 'app-menu-app',
@@ -10,16 +11,15 @@ type IAreaShown = 'REPHRASE' | 'MEANINGS' | 'GENERATOR';
 
 
 export class MenuAppComponent {
-  areaShown: IAreaShown = 'REPHRASE';
-  baseInput: string = '';
-  baseOutput: string = '';
 
-  setAreaShown (val: IAreaShown) {
-    this.areaShown = val;  
+  selectedComponent: string = 'RephraseComponent';
+  constructor(private router: Router) {}
+
+
+
+  navigateToComponent(component: string) {
+    this.router.navigate([component]);
+    this.selectedComponent = component;
   }
 
-  handleRephrase(): void {
-    console.log(this.baseInput)
-    this.baseOutput = this.baseInput;
-  }
 }
