@@ -48,7 +48,7 @@
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
     cursor: pointer;
 } */
-.menu-tabs>ul {
+.container>ul {
     display: grid;
     grid-template-columns: repeat(3, 80px);
     list-style-type: none;

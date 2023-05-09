@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-rephrase',
-  templateUrl: './rephrase.component.html',
-  styleUrls: ['../menu-app.component.css', './rephrase.component.css']
-  })
-export class RephraseComponent {
+  selector: 'app-meanings',
+  templateUrl: './meanings.component.html',
+  styleUrls: ['../../header/header-app.component.css', './meanings.component.css']
+})
+export class MeaningsComponent {
 
   baseInput: string = '';
   baseOutput: string = '';
