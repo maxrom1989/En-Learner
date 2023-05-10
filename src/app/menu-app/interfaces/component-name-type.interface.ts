@@ -1,1 +1,1 @@
-export type IComponentNameType = 'RephraseComponent' | 'MeaningsComponent' | 'GeneratorComponent';
+export type IComponentNameType = 'RephraseComponent' | 'MeaningsComponent' | 'GeneratorComponent' | '';

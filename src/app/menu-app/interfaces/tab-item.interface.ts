@@ -1,7 +1,7 @@
 import { IComponentNameType } from "./component-name-type.interface";
 
 export interface ITabItem {
-  componentName: IComponentNameType;
-  url: string;
+  componentName: string;
+  url: IComponentNameType;
   isSelected: boolean;
 }

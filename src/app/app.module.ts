@@ -11,6 +11,7 @@ import { RephraseComponent } from './menu-app/tabs/rephrase/rephrase.component';
 import { MeaningsComponent } from './menu-app/tabs/meanings/meanings.component';
 import { GeneratorComponent } from './menu-app/tabs/generator/generator.component';
 import { TabsComponent } from './menu-app/tabs/tabs.component';
+import { ContentComponent } from './menu-app/content/content.component';
 
 const routes: Routes = [
   {path: 'RephraseComponent', component: RephraseComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
     MeaningsComponent,
     GeneratorComponent,
     TabsComponent,
+    ContentComponent,
   ],
   imports: [
     FormsModule,

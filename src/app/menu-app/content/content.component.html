@@ -1,0 +1,7 @@
+<app-tabs [tabs]="tabsList" (selectedTab)="onTabSelected($event)"></app-tabs>
+<!-- <ng-container *ngIf="selectedTab">
+    <app-rephrase *ngIf="selectedTab === 'RephraseComponent'"></app-rephrase>
+    <app-meanings *ngIf="selectedTab === 'MeaningsComponent'"></app-meanings>
+    <app-generator *ngIf="selectedTab === 'GeneratorComponent'"></app-generator>
+</ng-container> -->
+<router-outlet></router-outlet>

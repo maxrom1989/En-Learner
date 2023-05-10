@@ -1,5 +1,24 @@
 <div class="container">
     <ul>
+        <li *ngFor ="let tab of tabs" class="menu-tab-rephrase"
+        [class.selected]="tab.isSelected"
+        (click)="navigateToComponent(tab)">
+        {{tab.componentName}}
+        </li>
+    </ul>
+</div>
+<!-- <div>
+    <ng-container *ngFor="let tab of tabs">
+      <ng-container *ngIf="tab.isSelected">
+        <router-outlet [name]="tab.componentName"></router-outlet>
+      </ng-container>
+    </ng-container>
+  </div> -->
+
+
+
+<!-- <div class="container">
+    <ul>
         <li class="menu-tab-rephrase"
             [ngClass]="{ 'selected': selectedComponentName === 'RephraseComponent' || !selectedComponentName}" 
             (click)="navigateToComponent('RephraseComponent')">
@@ -16,6 +35,5 @@
                 Generator
             </li>
     </ul>
-    <!-- <app-tabs items="items"></app-tabs> -->
-    <router-outlet></router-outlet>
-</div>
+    <app-tabs items="items"></app-tabs>
+</div> -->
