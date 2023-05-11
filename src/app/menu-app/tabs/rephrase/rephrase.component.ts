@@ -1,6 +1,6 @@
 import { MainDataService } from './../../services/main-data.service';
-import { Component, OnInit } from '@angular/core';
-import { delay, of } from 'rxjs';
+import { Component, OnInit, Input } from '@angular/core';
+import { EMPTY, catchError, delay, of, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-rephrase',
@@ -11,31 +11,44 @@ export class RephraseComponent implements OnInit{
 
   baseInput: string  = '';
   baseOutput: string  = '';
-  // _isError: boolean = false;
+  errorMessage?: string;
+  
   constructor (public mainDataService: MainDataService) {}
 
   ngOnInit(): void {
-      this.mainDataService.getMainData().subscribe(_ => {
-        this.baseOutput = this.baseInput;
+      this.mainDataService.getMainData()
+      .pipe(
+        catchError((err)=> {
+          this.errorMessage = err.message;
+          return EMPTY;
+          
+        })
+      )
+      .subscribe(_ => {
+        this.baseOutput = _.data!;
       })
   }
 
 
-  handleRephrase(): void {
-    console.log(this.baseInput, this.baseOutput);
-    // this.baseOutput = this.baseInput;
-    // this._isError = false;
-    // this.mainDataService.transferMainData(this.baseInput);
-    this.mainDataService.transferMainData(this.baseInput)
-    };
-  }
+  // handleRephrase(): void {
+  //   console.log(this.baseInput, this.baseOutput);
+  //   this.mainDataService.transferMainData(this.baseInput)
+  // };
+
+  handleRephrase(input: string): void {
+    this.mainDataService.getAnswer(input).subscribe({
+      next:(res) => {
+        console.log(res);
+        this.baseOutput = res;
+      },
+      error:(err) => {
+        console.warn(err);
+      }
+    })
+  };
+
+}
 
 
-  // da() {
-  //   of(`${this.baseInput}${Math.random()}`).pipe(
-  //     delay(5_000)
-  //   ).subscribe(res => {
-  //     this.baseOutput = res;
-  //   })
-  // }
+
 

@@ -12,13 +12,11 @@ export class AppComponent {
   constructor (private service : MainDataService) {}
 
   ngOnInit (){
-  this.service.mainData$.subscribe({
-    next: _isError => {
-      this.isError = _isError.isError;
-      // if (!this.errorMessage) {
-        this.errorMessage = _isError.errorMessage;
-      // }
-    }
+  this.service.error$.subscribe({
+    next: (error) => {
+      this.isError = error;
+        this.errorMessage = error;
+    },
   });
 }
   
