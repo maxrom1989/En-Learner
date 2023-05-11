@@ -1,4 +1,4 @@
-<app-tabs [tabs]="tabsList" (selectedTab)="onTabSelected($event)"></app-tabs>
+<app-tabs [tabs]="tabsList" (selectedTabName)="onTabNameSelected($event)"></app-tabs>
 <!-- <ng-container *ngIf="selectedTab">
     <app-rephrase *ngIf="selectedTab === 'RephraseComponent'"></app-rephrase>
     <app-meanings *ngIf="selectedTab === 'MeaningsComponent'"></app-meanings>

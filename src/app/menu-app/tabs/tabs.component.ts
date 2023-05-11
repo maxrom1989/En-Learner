@@ -28,7 +28,7 @@ export class TabsComponent {
     // }
   // selectedComponentName: IComponentNameType = '';
   // defaultComponentName : IComponentNameType = 'RephraseComponent';
-@Output() selectedTab = new EventEmitter<IComponentNameType>();
+@Output() selectedTabName = new EventEmitter<IComponentNameType>();
   constructor(private router: Router) {}
 
   // ngOnInit() {
@@ -42,6 +42,6 @@ export class TabsComponent {
     // this.selectedComponentName = component;
     this.tabs.forEach(t => t.isSelected = false);
     tab.isSelected=true;
-    this.selectedTab.emit(tab.url);
+    this.selectedTabName.emit(tab.url);
   }
 }

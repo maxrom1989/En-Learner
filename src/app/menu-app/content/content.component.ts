@@ -28,12 +28,12 @@ export class ContentComponent {
       }
   ];
 
-
-  selectedTab: IComponentNameType = this.tabsList[0]?.url;
+  
+  selectedTabName: IComponentNameType = this.tabsList[0]?.url;
   constructor(private router: Router) {}
 
-  onTabSelected(tab: IComponentNameType) {
-    this.selectedTab = tab;
+  onTabNameSelected(tab: IComponentNameType) {
+    this.selectedTabName = tab;
     this.router.navigate([tab])
   }
 

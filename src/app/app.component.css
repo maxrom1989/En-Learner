@@ -3,3 +3,18 @@
     grid-template-columns: 2fr 1fr;
     gap: 1rem;
   }
+
+  .loading-spinner {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background-color: rgb(219, 124, 124);
+    text-align: center;
+  }
+  
+  .loading-spinner.show {
+    display: block;
+  }
