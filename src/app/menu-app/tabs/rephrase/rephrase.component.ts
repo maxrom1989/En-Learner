@@ -12,6 +12,7 @@ export class RephraseComponent implements OnInit{
   baseInput: string  = '';
   baseOutput: string  = '';
   errorMessage?: string;
+  // isError: boolean = false;
   
   constructor (public mainDataService: MainDataService) {}
 
@@ -40,6 +41,7 @@ export class RephraseComponent implements OnInit{
       next:(res) => {
         console.log(res);
         this.baseOutput = res;
+        // this.isError = false;
       },
       error:(err) => {
         console.warn(err);

@@ -1,3 +1,4 @@
+
 <div class="main-container">
     <div class="column">
         <header-app></header-app>
@@ -8,6 +9,9 @@
     </div>
 </div>
 
-<div class="loading-spinner" [class.show]="isError">
-    <div class="spinner">{{errorMessage}}</div>
+<div class="loading-spinner" id='222' [class.show]="isError">
+    <div class="content-spinner">
+        <span (click)="closeSpinner()" class="close">&times;</span>
+        <div class="spinner">{{errorMessage}}</div>
+    </div>
   </div>

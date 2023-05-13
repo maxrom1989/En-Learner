@@ -8,7 +8,7 @@ export class MainDataService {
 
   mainData$ = new BehaviorSubject<{ data: string | null, errorMessage: string, isError: boolean }>
   ({data: null, errorMessage: '', isError: false});
-  error$ = new BehaviorSubject<any>(null);
+  error$ = new BehaviorSubject<string>('');
   baseInput: string = '';
   baseOutput: string = '';
   constructor() { }
@@ -36,8 +36,9 @@ export class MainDataService {
     if (randomNumber < 5) {
       let maxError = 'MAX ERROR';
       this.error$.next(maxError);
-      return throwError(maxError);
+      return throwError(() => maxError);
     } else {
+      this.error$.next('');
       return answer
     }
   }

@@ -16,7 +16,8 @@ import { ContentComponent } from './menu-app/content/content.component';
 const routes: Routes = [
   {path: 'RephraseComponent', component: RephraseComponent},
   {path: 'MeaningsComponent', component: MeaningsComponent},
-  {path: 'GeneratorComponent', component: GeneratorComponent}
+  {path: 'GeneratorComponent', component: GeneratorComponent},
+  {path: '**', redirectTo:'RephraseComponent'}
 ];
 
 @NgModule({
