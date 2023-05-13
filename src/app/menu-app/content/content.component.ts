@@ -13,28 +13,31 @@ export class ContentComponent {
   tabsList: ITabItem[] = [
     {
       componentName: 'Rephrase',
-      url: 'RephraseComponent',
+      routerLink: ['/RephraseComponent'],
+      // url: 'RephraseComponent',
       isSelected: true
       },
       {
       componentName: 'Meanings',
-      url: 'MeaningsComponent',
+      routerLink: ['/MeaningsComponent'],
+      // url: 'MeaningsComponent',
       isSelected: false
       },
       {
       componentName: 'Generator',
-      url: 'GeneratorComponent',
+      routerLink: ['/GeneratorComponent'],
+      // url: 'GeneratorComponent',
       isSelected: false
       }
   ];
 
   
-  selectedTabName: IComponentNameType = this.tabsList[0]?.url;
+  // selectedTabName: IComponentNameType = this.tabsList[0]?.url;
   constructor(private router: Router) {}
 
   onTabNameSelected(tab: IComponentNameType) {
-    this.selectedTabName = tab;
-    this.router.navigate([tab])
+    // this.selectedTabName = tab;
+    // this.router.navigate([tab])
   }
 
 }

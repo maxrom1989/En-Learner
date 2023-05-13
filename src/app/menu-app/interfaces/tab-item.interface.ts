@@ -2,6 +2,7 @@ import { IComponentNameType } from "./component-name-type.interface";
 
 export interface ITabItem {
   componentName: string;
-  url: IComponentNameType;
+  // url: IComponentNameType;
+  routerLink: string[];
   isSelected: boolean;
 }

@@ -4,7 +4,6 @@ import { Routes, RouterModule} from '@angular/router';
 import { AppComponent } from './app.component';
 import { HeaderAppComponent } from './menu-app/header/header-app.component';
 import { ClipboardAppComponent } from './clipboard-app/clipboard-app.component';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { RephraseComponent } from './menu-app/tabs/rephrase/rephrase.component';
@@ -12,6 +11,12 @@ import { MeaningsComponent } from './menu-app/tabs/meanings/meanings.component';
 import { GeneratorComponent } from './menu-app/tabs/generator/generator.component';
 import { TabsComponent } from './menu-app/tabs/tabs.component';
 import { ContentComponent } from './menu-app/content/content.component';
+import { ButtonModule } from 'primeng/button';
+import { TabViewModule } from 'primeng/tabview';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { ToastModule } from 'primeng/toast';
 
 const routes: Routes = [
   {path: 'RephraseComponent', component: RephraseComponent},
@@ -34,9 +39,14 @@ const routes: Routes = [
   imports: [
     FormsModule,
     BrowserModule,
-    MatButtonToggleModule,
+    ButtonModule,
+    TabViewModule,
+    TabMenuModule,
+    RadioButtonModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(routes)
+    SplitButtonModule,
+    ToastModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [],
   bootstrap: [AppComponent]

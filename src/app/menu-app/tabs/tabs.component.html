@@ -1,4 +1,26 @@
 <div class="container">
+    <!-- <ul> -->
+        <!-- <li *ngFor ="let tab of tabs" class="menu-tab-rephrase"
+        [class.selected]="tab.isSelected"
+        (click)="navigateToComponent(tab)">
+        </li> -->
+        <!-- <p-tabView> -->
+        <p-tabMenu  [model]="tabs" [activeItem]="activeTab"
+        class="menu-tab-rephrase" 
+        (activeItemChange)="onActiveItemChange($event)">
+             <ng-template pTemplate="tab" let-tab>
+                {{tab.componentName}}
+            </ng-template> 
+        </p-tabMenu>
+    <!-- </p-tabView> -->
+    <!-- </ul> -->
+</div>
+
+
+
+
+
+<!-- <div class="container">
     <ul>
         <li *ngFor ="let tab of tabs" class="menu-tab-rephrase"
         [class.selected]="tab.isSelected"
@@ -6,7 +28,7 @@
         {{tab.componentName}}
         </li>
     </ul>
-</div>
+</div> -->
 
 
 
@@ -21,7 +43,7 @@
 
 
 <!-- <div class="container">
-    <ul>
+    <ul>W
         <li class="menu-tab-rephrase"
             [ngClass]="{ 'selected': selectedComponentName === 'RephraseComponent' || !selectedComponentName}" 
             (click)="navigateToComponent('RephraseComponent')">
