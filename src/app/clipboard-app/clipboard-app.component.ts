@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { DataTransferService } from '../menu-app/services/data-transfer.service';
 import { InputDataTransfer } from '../menu-app/interfaces/input-data-transfer';
+import { ClipboardToDataService } from '../menu-app/services/clipboard-to-data.service';
 
 @Component({
   selector: 'clipboard-app',
@@ -12,10 +13,11 @@ export class ClipboardAppComponent {
   tabName: string = '';
   serviceData: InputDataTransfer[] = [{input: '',
     tab: '',
-    style: 'red'}];
+    style: ''}];
   @Input() selectedTabName?: string;
   selectedStyle?: string;
-  constructor(private dataTransferService: DataTransferService) { }
+  constructor(private dataTransferService: DataTransferService,
+    private clipboardToData: ClipboardToDataService) { }
 
   ngOnInit(): void {
     this.dataTransferService.currentData.subscribe(data => {
@@ -32,5 +34,9 @@ export class ClipboardAppComponent {
     }
   }
 
+  transferClipboardToData(aa: string) {
+    this.clipboardToData.transferData(aa);
+    
+  }
 }
 

@@ -21,8 +21,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DataComponent } from './menu-app/data/data.component';
 import { MessageService } from 'primeng/api';
 import { TooltipModule } from 'primeng/tooltip';
-
-
+import { RippleModule } from 'primeng/ripple';
+import { DividerModule } from 'primeng/divider';
 
 const routes: Routes = [
   {path: 'RephraseComponent', component: RephraseComponent},
@@ -55,6 +55,8 @@ const routes: Routes = [
     ToastModule,
     InputTextareaModule,
     TooltipModule,
+    RippleModule,
+    DividerModule,
     RouterModule.forRoot(routes),
   ],
   providers: [ MessageService ],

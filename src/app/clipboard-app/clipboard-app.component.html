@@ -3,7 +3,13 @@
         <h1>Clipboard</h1>
     </div>
 </header>
-{{tabName | json}}
-<ul class="clipboard-list">
-    <li *ngFor="let data of serviceData" [ngClass]="data.style">{{data.input}} {{data.tab}}</li>
+<ul class="clipboard-list" >
+    <ng-container *ngFor="let data of serviceData">
+        <li [ngClass]="data.style"
+    (click)="transferClipboardToData(data.input)" pRipple
+    class="list-item" >{{data.input}} {{data.tab}}
+</li>
+
+<p-divider *ngIf="data.input"></p-divider>
+</ng-container>
 </ul>

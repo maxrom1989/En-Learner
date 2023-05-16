@@ -1,8 +1,9 @@
-import { Router } from '@angular/router';
-import { Component, Input, Output } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Component, Input, Output, OnInit } from '@angular/core';
 import { ITabItem } from '../interfaces/tab-item.interface';
 import { DataComponent } from '../data/data.component';
 import { IComponentNameType } from '../interfaces/component-name-type.interface';
+import { filter, take } from 'rxjs';
 
 
 @Component({
@@ -40,10 +41,24 @@ export class ContentComponent {
 
   
   selectedTabName: string = this.tabsList.find((tab) => tab.isSelected)?.clipboardName!;
-  selectedStyle: string = 'red';
+  selectedStyle: string = '';
   //  = this.tabsList.find((style) => style.isSelected)?.clipboardInfo.style!;
-  constructor() {}
+  constructor(private router: Router,
+    private activeRoute: ActivatedRoute,) {}
 
+    ngOnInit () {
+    this.router.events.pipe(filter((e) => {
+      return e instanceof NavigationEnd
+    }), take(1)).subscribe((res) => {
+      console.log(this.router.url)
+      let da = this.tabsList.find((tab) => {
+        return tab.routerLink.includes(this.router.url)
+      })
+      this.selectedTabName=da!.clipboardName;
+      this.selectedStyle = da!.styleClass;
+      console.log('DA: ', da, 'adsadsa')
+    })
+  }
   onTabNameSelected(event: any) {
     this.selectedTabName  = event.clipboardName;
     this.selectedStyle = event.styleClass;

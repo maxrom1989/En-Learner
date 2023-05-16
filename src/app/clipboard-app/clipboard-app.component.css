@@ -41,7 +41,21 @@
     color: blue;
 }
 
+li {
+    cursor: pointer;
+}
 
+.list-item:hover {
+    /* background-color: #a7aaad67;
+    
+    color:#3B82F6; */
+    color: #ffffff;
+    background: #3B82F6;
+    font-weight: bold;
+}
+.clipboard-list li:first-child {
+    margin-top: 10px; 
+  }
 
 
 /* li {

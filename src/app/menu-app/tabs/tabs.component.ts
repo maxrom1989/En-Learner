@@ -1,8 +1,10 @@
 import { ITabItem } from './../interfaces/tab-item.interface';
-import { Component, Output, Input, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Output, Input, EventEmitter, AfterViewInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { IComponentNameType } from '../interfaces/component-name-type.interface';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { filter, take } from 'rxjs';
 
 
 @Component({
@@ -34,13 +36,40 @@ export class TabsComponent {
 // @Output() selectedTabName = new EventEmitter<IComponentNameType>();
   // paramId: string;
   constructor(private router: Router,
-    private activeRoute: ActivatedRoute) {
+    private activeRoute: ActivatedRoute,
+    ) {
       // this.paramId = activeRoute.snapshot.params['paramID'];
     }
 
+
   ngOnInit() {
-    this.activeTab = this.tabs[0];
+
+    this.router.events.pipe(filter((e) => {
+      return e instanceof NavigationEnd
+    }), take(1)).subscribe((res) => {
+      // console.log(this.router.url)
+      let da = this.tabs.find((tab) => {
+        return tab.routerLink.includes(this.router.url)
+      })
+      this.activeTab!=da;
+      // console.log(da)
+    })
+
     // this.selectEd.emit({name: 'rephrase', style: 'red'});
+    // this.activeRoute.queryParamMap.subscribe((params) => {
+    //   const tabName = params.get('tabName');
+    //   console.log('TabName: ', tabName, params)
+    //   if (tabName) {
+    //     this.activeTab.routerLink[0] = tabName;
+    //   }
+    //   // if (this.tabs[0].routerLink[0] === tabName) {
+    //   //   this.activeTab.routerLink[0] =tabName;
+    //   // } else if (this.tabs[1].routerLink[0] === tabName) {
+    //   //   this.activeTab.routerLink[0] =tabName;
+    //   // } else if (this.tabs[2].routerLink[0] === tabName) {
+    //   //   this.activeTab.routerLink[0] =tabName;
+    //   // }
+    // });
   }
 
   @Output() selectEd = new EventEmitter<{name: string, styleClass: string}>();
@@ -56,6 +85,7 @@ export class TabsComponent {
     this.activeTab = event;
     this.selectEd.emit(event);
     console.log(this.activeTab, 333)
+    // this.router.navigate([], { queryParams: { event }, queryParamsHandling: 'merge' });
   }
 
 }

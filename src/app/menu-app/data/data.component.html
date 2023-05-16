@@ -9,6 +9,7 @@
     <div class="button-rephrase">
         <p-toast></p-toast>
         <p-splitButton label="Convert" icon="pi pi-plus" (onClick)="handleRephrase(baseInput)"
+            [disabled]="!baseInput"
             [model]="buttonItems">
         </p-splitButton>
     </div>

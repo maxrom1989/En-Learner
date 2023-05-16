@@ -5,8 +5,6 @@
     <app-generator *ngIf="selectedTab === 'GeneratorComponent'"></app-generator>
 </ng-container> -->
 <router-outlet></router-outlet>
-{{selectedTabName | json}}
-{{selectedStyle | json}}
 <app-data [tabName]="selectedTabName" [selectedStyle]="selectedStyle"></app-data>
 <!-- [selectedStyle]="selectedStyle" -->
 
