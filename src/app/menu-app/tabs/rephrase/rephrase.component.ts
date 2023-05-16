@@ -3,12 +3,13 @@ import { Component, OnInit, Input } from '@angular/core';
 import { EMPTY, catchError, delay, of, throwError } from 'rxjs';
 import { RephraseMethod } from '../../interfaces/rephrase-method';
 import { MenuItem, MessageService } from 'primeng/api';
+import { DataTransferService } from '../../services/data-transfer.service';
 
 @Component({
   selector: 'app-rephrase',
   templateUrl: './rephrase.component.html',
   styleUrls: ['../../header/header-app.component.css', './rephrase.component.css'],
-  providers: [ MessageService ]
+  // providers: [ MessageService ]
   })
 export class RephraseComponent implements OnInit{
 
@@ -16,25 +17,27 @@ export class RephraseComponent implements OnInit{
   baseOutput: string  = '';
   errorMessage?: string;
   selectedRephraseMethod?: RephraseMethod;
+  tabName: string = '(rephrase)';
   // isError: boolean = false;
   rephraseMethods: RephraseMethod[] =[
     {name: 'Polite', forLabel:'P'},
     {name: 'Official', forLabel:'O'},
     {name: 'Regular', forLabel:'R'} 
    ];
-  buttonItems: MenuItem[]; 
+  // buttonItems: MenuItem[]; 
   
   constructor (public mainDataService: MainDataService, 
-    private messageService: MessageService) {
-    this.buttonItems = [
-      {
-        label: 'Add To Clipboard',
-        icon: 'pi pi-refresh',
-        command: () => {
-          this.update();
-          }
-        }
-    ];
+    private messageService: MessageService,
+    private dataTransferService: DataTransferService) {
+    // this.buttonItems = [
+    //   {
+    //     label: 'Add To Clipboard',
+    //     icon: 'pi pi-refresh',
+    //     command: () => {
+    //       this.update();
+    //       }
+    //     }
+    // ];
   }
 
   ngOnInit(): void {
@@ -49,9 +52,10 @@ export class RephraseComponent implements OnInit{
       )
       .subscribe(_ => {
         this.baseOutput = _.data!;
-      })
+      });
+      // this.dataTransferService.transferData(this.baseInput, this.tabName);
   }
-
+  // tabData = this.dataTransferService.transferData(this.baseInput, this.tabName);
 
   // handleRephrase(): void {
   //   console.log(this.baseInput, this.baseOutput);
@@ -80,6 +84,7 @@ export class RephraseComponent implements OnInit{
     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Added to ClipBoard' });
 }
 }
+
 
 
 

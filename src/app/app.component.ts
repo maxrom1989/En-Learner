@@ -10,29 +10,29 @@ import { Component, OnInit  } from '@angular/core';
 
 
 export class AppComponent implements OnInit{
-  isError?: boolean;
-  errorMessage?: string;
-  constructor (private service : MainDataService) {}
+  // isError?: boolean;
+  // errorMessage?: string;
+  constructor () {}
 
   ngOnInit (){
-    this.service.error$.subscribe({
-      next: (error) => {
-        this.isError = !!error;
-        this.errorMessage = error;
-      },
-    });
-    document.body.addEventListener('click', (event) => {
-      const modal = document.querySelector('.loading-spinner');
-      if (event.target === modal) {
-        this.closeSpinner();
-      }
-    });
+    // this.service.error$.subscribe({
+    //   next: (error) => {
+    //     this.isError = !!error;
+    //     this.errorMessage = error;
+    //   },
+    // });
+    // document.body.addEventListener('click', (event) => {
+    //   const modal = document.querySelector('.loading-spinner');
+    //   if (event.target === modal) {
+    //     this.closeSpinner();
+    //   }
+    // });
   }
 
 
-  closeSpinner(){
-    this.service.error$.next('');
-  }
+  // closeSpinner(){
+  //   this.service.error$.next('');
+  // }
 
   
 }

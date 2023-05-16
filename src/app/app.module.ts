@@ -17,6 +17,12 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { ToastModule } from 'primeng/toast';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DataComponent } from './menu-app/data/data.component';
+import { MessageService } from 'primeng/api';
+import { TooltipModule } from 'primeng/tooltip';
+
+
 
 const routes: Routes = [
   {path: 'RephraseComponent', component: RephraseComponent},
@@ -35,6 +41,7 @@ const routes: Routes = [
     GeneratorComponent,
     TabsComponent,
     ContentComponent,
+    DataComponent,
   ],
   imports: [
     FormsModule,
@@ -46,9 +53,11 @@ const routes: Routes = [
     BrowserAnimationsModule,
     SplitButtonModule,
     ToastModule,
+    InputTextareaModule,
+    TooltipModule,
     RouterModule.forRoot(routes),
   ],
-  providers: [],
+  providers: [ MessageService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

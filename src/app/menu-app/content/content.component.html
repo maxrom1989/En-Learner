@@ -1,8 +1,12 @@
-<app-tabs [tabs]="tabsList" (selectedTabName)="onTabNameSelected($event)"></app-tabs>
+<app-tabs [tabs]="tabsList" (selectEd)="onTabNameSelected($event)" *ngIf="tabsList?.length"></app-tabs>
 <!-- <ng-container *ngIf="selectedTab">
     <app-rephrase *ngIf="selectedTab === 'RephraseComponent'"></app-rephrase>
     <app-meanings *ngIf="selectedTab === 'MeaningsComponent'"></app-meanings>
     <app-generator *ngIf="selectedTab === 'GeneratorComponent'"></app-generator>
 </ng-container> -->
-
 <router-outlet></router-outlet>
+{{selectedTabName | json}}
+{{selectedStyle | json}}
+<app-data [tabName]="selectedTabName" [selectedStyle]="selectedStyle"></app-data>
+<!-- [selectedStyle]="selectedStyle" -->
+

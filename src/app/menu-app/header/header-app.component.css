@@ -118,6 +118,7 @@
 .output-rephrase {
     display: flex;
     height: 100%;
+    margin-top: 15px;
     /* padding-top: 24px; */
 }
 

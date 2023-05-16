@@ -5,7 +5,7 @@
         (click)="navigateToComponent(tab)">
         </li> -->
         <!-- <p-tabView> -->
-        <p-tabMenu  [model]="tabs" [activeItem]="activeTab"
+        <p-tabMenu *ngIf="tabs?.length" [model]="tabs" [activeItem]="activeTab"
         class="menu-tab-rephrase" 
         (activeItemChange)="onActiveItemChange($event)">
              <ng-template pTemplate="tab" let-tab>

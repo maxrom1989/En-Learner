@@ -2,6 +2,7 @@ import { ITabItem } from './../interfaces/tab-item.interface';
 import { Component, Output, Input, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { IComponentNameType } from '../interfaces/component-name-type.interface';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -11,6 +12,8 @@ import { IComponentNameType } from '../interfaces/component-name-type.interface'
 })
 export class TabsComponent {
  @Input() tabs: ITabItem[] =[];
+ 
+ activeTab!: ITabItem;
     // {
     // componentName: 'RephraseComponent',
     // url: 'RephraseComponent',
@@ -28,25 +31,31 @@ export class TabsComponent {
     // }
   // selectedComponentName: IComponentNameType = '';
   // defaultComponentName : IComponentNameType = 'RephraseComponent';
-@Output() selectedTabName = new EventEmitter<IComponentNameType>();
+// @Output() selectedTabName = new EventEmitter<IComponentNameType>();
+  // paramId: string;
+  constructor(private router: Router,
+    private activeRoute: ActivatedRoute) {
+      // this.paramId = activeRoute.snapshot.params['paramID'];
+    }
 
-  constructor(private router: Router) {}
-
-  // ngOnInit() {
-  //   this.selectedComponentName = this.defaultComponentName;
-  //   this.navigateToComponent(this.selectedComponentName);
-  // }
-  activeTab : ITabItem = this.tabs[0];
-
-  navigateToComponent(tab : ITabItem) {
-    // this.router.navigate([tab.url]);
-    // this.selectedComponentName = component;
-    this.tabs.forEach(t => t.isSelected = false);
-    tab.isSelected=true;
-    // this.selectedTabName.emit(tab.url);
+  ngOnInit() {
+    this.activeTab = this.tabs[0];
+    // this.selectEd.emit({name: 'rephrase', style: 'red'});
   }
+
+  @Output() selectEd = new EventEmitter<{name: string, styleClass: string}>();
+  // @Output() selectEd = new EventEmitter<{name: string, style: string}>({name: '(rephrase)',style: 'red'});
+  // navigateToComponent(tab : ITabItem) {
+  //   // this.router.navigate([tab.url]);
+  //   // this.selectedComponentName = component;
+  //   this.tabs.forEach(t => t.isSelected = false);
+  //   tab.isSelected=true;
+  //   // this.selectedTabName.emit(tab.url);
+  // }
   onActiveItemChange (event: any) {
     this.activeTab = event;
+    this.selectEd.emit(event);
+    console.log(this.activeTab, 333)
   }
 
 }

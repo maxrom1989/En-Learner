@@ -29,3 +29,7 @@ body { margin: 0; font-family: var(--headings-font-family); }
 .p-radiobutton {
     margin-right: 5px;
 }
+
+.output-rephrase[_ngcontent-ng-c2284969895] > output[_ngcontent-ng-c2284969895] {
+    margin-top: 15px;
+}
