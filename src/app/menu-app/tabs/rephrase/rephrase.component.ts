@@ -4,6 +4,7 @@ import { EMPTY, catchError, delay, of, throwError } from 'rxjs';
 import { RephraseMethod } from '../../interfaces/rephrase-method';
 import { MenuItem, MessageService } from 'primeng/api';
 import { DataTransferService } from '../../services/data-transfer.service';
+import { RephraseService } from '../../services/rephrase.service';
 
 @Component({
   selector: 'app-rephrase',
@@ -28,7 +29,8 @@ export class RephraseComponent implements OnInit{
   
   constructor (public mainDataService: MainDataService, 
     private messageService: MessageService,
-    private dataTransferService: DataTransferService) {
+    private dataTransferService: DataTransferService,
+    private rephraseService: RephraseService) {
     // this.buttonItems = [
     //   {
     //     label: 'Add To Clipboard',
@@ -62,6 +64,9 @@ export class RephraseComponent implements OnInit{
   //   this.mainDataService.transferMainData(this.baseInput)
   // };
 
+  ngAfterViewChecked(){
+    this.rephraseService.setRephraseMethod(this.selectedRephraseMethod!);
+  }
   handleRephrase(input: string): void {
   
     this.mainDataService.getAnswer(input).subscribe({

@@ -47,16 +47,19 @@ export class ContentComponent {
     private activeRoute: ActivatedRoute,) {}
 
     ngOnInit () {
-    this.router.events.pipe(filter((e) => {
-      return e instanceof NavigationEnd
-    }), take(1)).subscribe((res) => {
-      console.log(this.router.url)
-      let da = this.tabsList.find((tab) => {
-        return tab.routerLink.includes(this.router.url)
-      })
-      this.selectedTabName=da!.clipboardName;
-      this.selectedStyle = da!.styleClass;
-      console.log('DA: ', da, 'adsadsa')
+    this.router.events.pipe(
+      filter((e) => {
+        return e instanceof NavigationEnd
+      }), 
+      take(1)
+      ).subscribe((res) => {
+        console.log(this.router.url)
+        let da = this.tabsList.find((tab) => {
+          return tab.routerLink.includes(this.router.url)
+        })
+        this.selectedTabName=da!.clipboardName;
+        this.selectedStyle = da!.styleClass;
+        console.log('DA: ', da, 'adsadsa')
     })
   }
   onTabNameSelected(event: any) {

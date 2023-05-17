@@ -23,6 +23,8 @@ import { MessageService } from 'primeng/api';
 import { TooltipModule } from 'primeng/tooltip';
 import { RippleModule } from 'primeng/ripple';
 import { DividerModule } from 'primeng/divider';
+import { InputTextModule } from 'primeng/inputtext';
+import { KeyFilterModule } from 'primeng/keyfilter';
 
 const routes: Routes = [
   {path: 'RephraseComponent', component: RephraseComponent},
@@ -57,6 +59,8 @@ const routes: Routes = [
     TooltipModule,
     RippleModule,
     DividerModule,
+    KeyFilterModule,
+    InputTextModule,
     RouterModule.forRoot(routes),
   ],
   providers: [ MessageService ],

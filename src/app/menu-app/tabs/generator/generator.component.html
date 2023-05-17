@@ -1,8 +1,11 @@
 <div class="menu-generator">
     <div class="generator-method">
         <div class="radio-buttons">
-            <label for="input-generator">Кол-во повторений:  </label>
-            <input type="text" name="polite" id="input-generator" value="" checked>
+            <label for="input-generator">Кол-во повторений: </label>
+            <input pInputText  [(ngModel)]="repeats" id="input-generator" [pattern]="numberPattern"/>
+            <!-- <div [hidden]="repeats.valid || repeats.untouched">Неверный формат кол-ва повторений</div> -->
+            <!-- <label for="input-generator">Кол-во повторений:  </label>
+            <input type="text" name="polite" id="input-generator" [(ngModel)]="repeats" value="" checked> -->
         </div>
     <!-- <form>
         <div class="textarea-generator">
