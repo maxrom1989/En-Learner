@@ -25,6 +25,7 @@ import { RippleModule } from 'primeng/ripple';
 import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { KeyFilterModule } from 'primeng/keyfilter';
+import { ListboxModule } from 'primeng/listbox';
 
 const routes: Routes = [
   {path: 'RephraseComponent', component: RephraseComponent},
@@ -61,6 +62,7 @@ const routes: Routes = [
     DividerModule,
     KeyFilterModule,
     InputTextModule,
+    ListboxModule,
     RouterModule.forRoot(routes),
   ],
   providers: [ MessageService ],

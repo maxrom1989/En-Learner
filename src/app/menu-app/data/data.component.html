@@ -8,12 +8,20 @@
 
     <div class="button-rephrase">
         <p-toast></p-toast>
-        <p-splitButton label="Convert" icon="pi pi-plus" (onClick)="handleRephrase(baseInput)"
-            [disabled]="!baseInput"
-            [model]="buttonItems">
-        </p-splitButton>
+        <p-button label="Convert" icon="pi pi-plus" (onClick)="handleRephrase(baseInput)"
+            [disabled]="!baseInput">
+            <!-- [model]="buttonItems" -->
+        </p-button>   
+        <p-button  label="Add to Clipboard" icon="pi pi-arrow-right" 
+        (onClick)="addToClipboard()"
+        [disabled]="!baseInput"></p-button>
     </div>
     <div class="output-rephrase">
-        <output pInputTextarea>{{baseOutput}}</output>
+        <output pInputTextarea 
+        (click)="addOutputToClipboard()"
+        (mouseenter)="onOutputMouseEnter()" (mouseleave)="onOutputMouseLeave()"
+        [ngClass]="highlight"
+        *ngIf="baseOutput">{{baseOutput}}</output>
+        <output pInputTextarea class="empty-output-message" *ngIf="!baseOutput">Convert data first</output>
     </div>
 </form>

@@ -19,7 +19,7 @@ export class DataComponent {
   @Input() selectedStyle: string = '';
   @Input() tabName: string = '';
   buttonItems: MenuItem[]; 
-
+  highlight: string = '';
 
   constructor (public mainDataService: MainDataService, 
     private messageService: MessageService,
@@ -32,8 +32,7 @@ export class DataComponent {
           label: 'Add To Clipboard',
           icon: 'pi pi-refresh',
           command: () => {
-            // this.dataTransferService.currentData.subscribe(data => {
-            //   this.baseInput = data.input;
+            // const existingData = this.dataTransferService.getData().find()
             //   this.tabName = data.tab;
             //   this.dataTransferService.transferData(this.baseInput, this.tabName, this.selectedStyle);
             // })
@@ -84,6 +83,34 @@ export class DataComponent {
   update() {
     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Added to ClipBoard' });
 }
+
+ addToClipboard() {
+  // const currentData = this.dataTransferService.getData().pipe((data)=>
+  // );
+  // if (currentData.input === this.baseInput){
+  this.dataTransferService.transferData(this.baseInput, this.tabName, this.selectedStyle);
+  
+            console.log('TABNAME: ', this.tabName, this.selectedStyle)
+            this.update();
+ }
+
+ addOutputToClipboard() {
+  // const currentData = this.dataTransferService.getData().pipe((data)=>
+  // );
+  // if (currentData.input === this.baseInput){
+  this.dataTransferService.transferData(this.baseOutput, this.tabName, this.selectedStyle);
+  
+            console.log('TABNAME: ', this.tabName, this.selectedStyle)
+            this.update();
+ }
+
+ onOutputMouseEnter(){
+  this.highlight = 'highlight';
+ }
+
+ onOutputMouseLeave(){
+  this.highlight = '';
+ } 
 
 }
 

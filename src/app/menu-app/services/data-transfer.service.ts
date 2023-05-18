@@ -14,4 +14,8 @@ export class DataTransferService {
   transferData(input: string, tab: string, style: string) {
     this.data$.next({input, tab, style});
   }
+
+  getData() {
+    return this.data$;
+  }
 }

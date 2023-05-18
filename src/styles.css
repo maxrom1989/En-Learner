@@ -31,5 +31,17 @@ body { margin: 0; font-family: var(--headings-font-family); }
 }
 
 .output-rephrase[_ngcontent-ng-c2284969895] > output[_ngcontent-ng-c2284969895] {
-    margin-top: 15px;
+    margin-top: 30px;
 }
+
+.p-button {
+    margin-left:15px;
+}
+
+.column .ng-star-inserted {
+    cursor: pointer;
+}
+
+/* .ng-star-inserted {
+    margin-top: 10px;
+} */

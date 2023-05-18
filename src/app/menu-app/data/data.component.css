@@ -1,0 +1,12 @@
+.highlight {
+    color: red;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.highlight::after {
+    content: " (press to add to Clipboard)→";
+    font-weight: bold;
+    margin-left: 5px;
+    color: #3B82F6;
+}
