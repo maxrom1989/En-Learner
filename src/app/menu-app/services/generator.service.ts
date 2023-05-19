@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeneratorService {
-  repeats?: number;
-  constructor() { }
-  setRepeats(repeats: number) {
-    this.repeats = repeats;
+  private repeats = new BehaviorSubject<number>(0);
+  public repeatsData$ = this.repeats.asObservable();
+
+  transferRepeatsData(repeats: number) {
+    this.repeats.next(repeats);
   }
 }

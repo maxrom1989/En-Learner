@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { HeaderAppComponent } from './menu-app/header/header-app.component';
 import { ClipboardAppComponent } from './clipboard-app/clipboard-app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RephraseComponent } from './menu-app/tabs/rephrase/rephrase.component';
 import { MeaningsComponent } from './menu-app/tabs/meanings/meanings.component';
 import { GeneratorComponent } from './menu-app/tabs/generator/generator.component';
@@ -63,6 +63,7 @@ const routes: Routes = [
     KeyFilterModule,
     InputTextModule,
     ListboxModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes),
   ],
   providers: [ MessageService ],

@@ -6,7 +6,7 @@
 <p-listbox #listbox [options]="serviceData" [disabled]="serviceData[0].input===''"
 [(ngModel)]="clipboardItem" optionLabel="input" 
 [listStyle]="{ 'height': '464px','max-width': '425px'}"
-[style]="{ width: '425px' }">
+[style]="{ width: '100%' }">
     <!-- [listStyle]="{ 'max-height': '250px' }" [style]="{ width: '15rem' }" -->
     <ng-template let-data let-i='index' pTemplate="item">
         <div class="clipboard-item">

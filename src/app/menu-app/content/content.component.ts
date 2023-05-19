@@ -4,6 +4,7 @@ import { ITabItem } from '../interfaces/tab-item.interface';
 import { DataComponent } from '../data/data.component';
 import { IComponentNameType } from '../interfaces/component-name-type.interface';
 import { filter, take } from 'rxjs';
+import { GeneratorService } from '../services/generator.service';
 
 
 @Component({
@@ -38,13 +39,14 @@ export class ContentComponent {
       isSelected: false
       }
   ];
-
+  repeats?: number = 2;
   
   selectedTabName: string = this.tabsList.find((tab) => tab.isSelected)?.clipboardName!;
   selectedStyle: string = '';
   //  = this.tabsList.find((style) => style.isSelected)?.clipboardInfo.style!;
   constructor(private router: Router,
-    private activeRoute: ActivatedRoute,) {}
+    private activeRoute: ActivatedRoute,
+    private generatorService: GeneratorService) {}
 
     ngOnInit () {
     this.router.events.pipe(

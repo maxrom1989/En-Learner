@@ -1,12 +1,13 @@
 import { MainDataService } from './../services/main-data.service';
 import { Component, Input } from '@angular/core';
-import { MenuItem, MessageService } from 'primeng/api';
+import { MenuItem, MessageService, PrimeIcons } from 'primeng/api';
 import { InputDataTransfer } from '../interfaces/input-data-transfer';
 import { DataTransferService } from '../services/data-transfer.service';
 import { ClipboardToDataService } from '../services/clipboard-to-data.service';
 import { RephraseService } from '../services/rephrase.service';
 import { RephraseMethod } from '../interfaces/rephrase-method';
 import { GeneratorService } from '../services/generator.service';
+
 
 @Component({
   selector: 'app-data',
@@ -55,6 +56,13 @@ export class DataComponent {
         console.log('DATA: ',data)
         // this.baseInput = data[length-1].input;
       });
+      this.generatorService.repeatsData$.subscribe((repeats) => {
+        this.repeats = repeats;
+      });
+    }
+
+    ngAfterViewChecked(){
+     
     }
   handleRephrase(input: string): void {
     this.mainDataService.getAnswer(input).subscribe({
@@ -75,9 +83,9 @@ export class DataComponent {
 
     const selectedMethod = this.rephraseService.rephraseMethod;
     this.rephraseMethod = selectedMethod;
-    const repeats = this.generatorService.repeats;
-    this.repeats = repeats;
-    console.log('Repeats ', this.repeats)
+    // const repeats = this.generatorService.repeats;
+    // this.repeats = repeats;
+    // console.log('Repeats ', this.repeats)
   };
 
   update() {

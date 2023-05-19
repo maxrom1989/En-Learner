@@ -1,31 +1,28 @@
-<div class="menu-generator">
+<form [formGroup]="generatorForm" class="menu-generator">
     <div class="generator-method">
-        <div class="radio-buttons">
+        <div class="radio-buttons form-group">
             <label for="input-generator">Кол-во повторений: </label>
-            <input pInputText  [(ngModel)]="repeats" id="input-generator" [pattern]="numberPattern"/>
-            <!-- <div [hidden]="repeats.valid || repeats.untouched">Неверный формат кол-ва повторений</div> -->
-            <!-- <label for="input-generator">Кол-во повторений:  </label>
-            <input type="text" name="polite" id="input-generator" [(ngModel)]="repeats" value="" checked> -->
+            <input pInputText id="input-generator" 
+            formControlName="formRepeats"
+           
+            (input)="handleInput($event)"
+            [pTooltip]="generatorForm.get('formRepeats')!.invalid ? 'Only numbers are allowed' : 'Input repeats number' "
+            tooltipPosition="right" />
         </div>
-    <!-- <form>
-        <div class="textarea-generator">
-            <textarea id="textarea-generator" rows="4" cols="20" placeholder="Введите текст" name="textarea-generator"
-                autofocus [(ngModel)]="baseInput"></textarea>
-            <label for="textarea-generator"></label>
-            <div class="textarea-button">
-                <button> TO </button>
-            </div>
+    </div>
+</form>
+
+
+
+
+
+
+<!-- <form [formGroup]="generatorForm" class="menu-generator">
+    <div class="generator-method">
+        <div class="radio-buttons form-group">
+            <label for="input-generator">Кол-во повторений: </label>
+            <input pInputText [(ngModel)]="repeats" id="input-generator" 
+            formControlName="formRepeats"/>
         </div>
-        <div class="button-rephrase">
-            <button (click)="handleRephrase()">
-                Кнопка2
-            </button>
-        </div>
-        <div class="output-rephrase">
-            <output>{{baseOutput}}</output>
-            <div class="textarea-button">
-                <button> TO </button>
-            </div>
-        </div>
-    </form> -->
-</div>
+    </div>
+</form> -->
