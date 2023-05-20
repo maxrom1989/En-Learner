@@ -1,72 +1,68 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { HeaderAppComponent } from './menu-app/header/header-app.component';
-import { ClipboardAppComponent } from './clipboard-app/clipboard-app.component';
+import { HeaderAppComponent } from './common/components/header/header-app.component';
+import { ClipboardListComponent } from './common/components/clipboard-list/clipboard-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RephraseComponent } from './menu-app/tabs/rephrase/rephrase.component';
-import { MeaningsComponent } from './menu-app/tabs/meanings/meanings.component';
-import { GeneratorComponent } from './menu-app/tabs/generator/generator.component';
-import { TabsComponent } from './menu-app/tabs/tabs.component';
-import { ContentComponent } from './menu-app/content/content.component';
-import { ButtonModule } from 'primeng/button';
+// import { RephraseComponent } from './rephrase/components/rephrase.component';
+// import { MeaningsComponent } from './meanings/components/meanings.component';
+// import { GeneratorComponent } from './generator/components/generator.component';
+import { TabsComponent } from './common/components/tabs/tabs.component';
+import { ContentComponent } from './common/components/content/content.component';
+// import { ButtonModule } from 'primeng/button';
 import { TabViewModule } from 'primeng/tabview';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { SplitButtonModule } from 'primeng/splitbutton';
-import { ToastModule } from 'primeng/toast';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { DataComponent } from './menu-app/data/data.component';
+// import { ToastModule } from 'primeng/toast';
+// import { InputTextareaModule } from 'primeng/inputtextarea';
+// import { InputOutputComponent } from './common/components/input-output/input-output.component';
 import { MessageService } from 'primeng/api';
 import { TooltipModule } from 'primeng/tooltip';
 import { RippleModule } from 'primeng/ripple';
-import { DividerModule } from 'primeng/divider';
-import { InputTextModule } from 'primeng/inputtext';
-import { KeyFilterModule } from 'primeng/keyfilter';
+// import { InputTextModule } from 'primeng/inputtext';
 import { ListboxModule } from 'primeng/listbox';
 
 const routes: Routes = [
-  {path: 'RephraseComponent', component: RephraseComponent},
-  {path: 'MeaningsComponent', component: MeaningsComponent},
-  {path: 'GeneratorComponent', component: GeneratorComponent},
-  {path: '**', redirectTo:'RephraseComponent'}
+  {
+    path: 'RephraseComponent',
+    loadChildren: () => import('./rephrase/rephrase.module').then(m => m.RephraseModule)
+  },
+  {
+    path: 'MeaningsComponent',
+    loadChildren: () => import('./meanings/meanings.module').then(m => m.MeaningsModule)
+  },
+  {
+    path: 'GeneratorComponent',
+    loadChildren: () => import('./generator/generator.module').then(m => m.GeneratorModule)
+  },
+  { path: '**', redirectTo: 'RephraseComponent' }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderAppComponent,
-    ClipboardAppComponent,
-    RephraseComponent,
-    MeaningsComponent,
-    GeneratorComponent,
+    ClipboardListComponent,
     TabsComponent,
     ContentComponent,
-    DataComponent,
   ],
   imports: [
     FormsModule,
     BrowserModule,
-    ButtonModule,
     TabViewModule,
     TabMenuModule,
     RadioButtonModule,
     BrowserAnimationsModule,
-    SplitButtonModule,
-    ToastModule,
-    InputTextareaModule,
     TooltipModule,
     RippleModule,
-    DividerModule,
-    KeyFilterModule,
-    InputTextModule,
     ListboxModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
   ],
-  providers: [ MessageService ],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

@@ -1,6 +1,4 @@
-import { MainDataService } from './menu-app/services/main-data.service';
-import { Component, OnInit  } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,32 +6,10 @@ import { Component, OnInit  } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 
+export class AppComponent implements OnInit {
 
-export class AppComponent implements OnInit{
-  // isError?: boolean;
-  // errorMessage?: string;
-  constructor () {}
+  constructor() { }
 
-  ngOnInit (){
-    // this.service.error$.subscribe({
-    //   next: (error) => {
-    //     this.isError = !!error;
-    //     this.errorMessage = error;
-    //   },
-    // });
-    // document.body.addEventListener('click', (event) => {
-    //   const modal = document.querySelector('.loading-spinner');
-    //   if (event.target === modal) {
-    //     this.closeSpinner();
-    //   }
-    // });
-  }
+  ngOnInit() { }
 
-
-  // closeSpinner(){
-  //   this.service.error$.next('');
-  // }
-
-  
 }
-

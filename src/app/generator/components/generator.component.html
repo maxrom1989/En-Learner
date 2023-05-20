@@ -1,0 +1,11 @@
+<form [formGroup]="generatorForm" class="menu-generator">
+    <div class="generator-method">
+        <div class="radio-buttons form-group">
+            <label for="input-generator">Кол-во повторений: </label>
+            <input pInputText id="input-generator" formControlName="formRepeats" (input)="handleInput($event)"
+                [pTooltip]="generatorForm.get('formRepeats')!.invalid ? 'Only numbers are allowed' : 'Input repeats number' "
+                tooltipPosition="right" />
+        </div>
+    </div>
+</form>
+<input-output [tabName]="tabName"></input-output>

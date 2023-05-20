@@ -8,40 +8,16 @@
     margin: 0;
 }
 
-@font-face {
-    font-family: Roboto;
-    src: url('./assets/fonts/Roboto.ttf');
-}
+html, body { 
+    height: 100%;
+ }
 
-@font-face {
-    font-family: Roboto;
-    src: url('./assets/fonts/Robotobold.ttf');
-    font-weight: bold;
-}
-
-body {
-    font-family: var(--headings-font-family);
-    /* font-family: var(--font-family); */
-}
-html, body { height: 100%; }
 body { margin: 0; font-family: var(--headings-font-family); }
 
 .p-radiobutton {
     margin-right: 5px;
 }
 
-.output-rephrase[_ngcontent-ng-c2284969895] > output[_ngcontent-ng-c2284969895] {
-    margin-top: 30px;
-}
-
 .p-button {
     margin-left:15px;
 }
-
-.column .ng-star-inserted {
-    cursor: pointer;
-}
-
-/* .ng-star-inserted {
-    margin-top: 10px;
-} */

@@ -1,0 +1,48 @@
+.header {
+    padding: 25px 0;
+    margin-right: 15px;
+    color: #6c757d;
+    font-size: 16px;
+}
+
+.header .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clipboard-item {
+    display: grid;
+    grid-template-columns: 10fr 1fr;   
+    margin-top: 10px; 
+}
+
+.column {
+    word-break: break-word;
+  }
+  
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.blue {
+    color: blue;
+}
+
+span.column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    flex-wrap: wrap;
+}
+
+span.column:hover {
+    position: relative;
+    scale: 1.5;
+    cursor: pointer;
+  }

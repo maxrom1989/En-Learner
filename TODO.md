@@ -1,4 +1,4 @@
-## Добавить скролл в Clipboard
+<!-- ## Добавить скролл в Clipboard
 
 ## Сделать 2 кнопки вместо одной  (Convert/Add to clipboard)
 
@@ -23,4 +23,90 @@
 ###  Если в генераторе не выбрано кол-во повторений то кнопка также disabled
 
 ###  В генераторе в инпут кол-ва повторений можно вводить только число
+ -->
 
+# Рефактор 1 часть
+
+## Удалить *.spec.ts
+
+## Clipboard-app переименовать
+
+## Удалить ненужное:
+
+### Стили
+
+### В шаблонах
+
+### Ts-code
+
+## Переструктурировать приложение
+
+### Menu-app не дб
+
+### app-data переименовать 
+
+<!-- ### providedIn: 'root' внимательно!!! /common/services -->
+
+### Из app-content удалиьь app-data
+
+### Использовать структуру
+
+<app-component>
+    <app-content>
+        <app-tabs>
+        <router-outlet> -> generator/meanings/rephrase
+            <app-generator>
+                <form...>
+                <app-data>
+
+### Структура папок
+
+/src
+    /common
+        /components
+            /app-header (который сейчас header-app)
+            /app-clipboard
+            /app-content
+            /app-tabs
+            /app-data
+        /interfaces (все интерфейсы внешго взаимодействия)
+        /services
+    /generator
+        generator.module.ts
+        /components (generator.component.html....)
+        <!-- /interfaces (все интерфейсы только для generator)
+        /services -->
+    /meanings
+        meaning.module.ts
+        /components
+            /comp1
+            /comp2
+            /comp3
+            /comp4
+            /comp5
+        <!-- /interfaces (все интерфейсы только для meanings)
+        /services -->
+    /rephrase
+        rephrase.module.ts
+        /components
+        <!-- /interfaces (все интерфейсы только для rephrase)
+        /services -->
+
+
+
+ ### Generator, Meanings и Rephrase дб модулями и Поменять маршрутизацию чтобы она использовала модули
+
+ вместо этого
+
+ const routes: Routes = [
+  {path: 'RephraseComponent', component: RephraseComponent},
+  //{
+  //  path: 'RephraseComponent',
+  //  loadChildren: () => import('./rephrase/rephrase.module').then(m => m.RephraseModule)
+  //},
+  {path: 'MeaningsComponent', component: MeaningsComponent},
+  {path: 'GeneratorComponent', component: GeneratorComponent},
+  {path: '**', redirectTo:'RephraseComponent'}
+];
+
+изать https://angular.io/guide/lazy-loading-ngmodules

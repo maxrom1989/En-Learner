@@ -1,0 +1,14 @@
+<div class="menu-content">
+    <div class="menu-rephrase">
+        <div class="rephrase-method">
+            <div *ngFor="let rephraseMethod of rephraseMethods" class="radio-buttons">
+                <p-radioButton [inputId]="rephraseMethod.forLabel" name="rephrase-method" [value]="rephraseMethod"
+                    [(ngModel)]="selectedRephraseMethod">
+                </p-radioButton>
+                <label [for]="rephraseMethod.forLabel">{{rephraseMethod.name | uppercase}}</label>
+            </div>
+        </div>
+    </div>
+</div>
+<input-output [tabName]="tabName"></input-output>
+<!-- [tabName]="selectedTabName" [selectedStyle]="selectedStyle" -->

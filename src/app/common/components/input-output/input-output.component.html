@@ -1,0 +1,21 @@
+<form class="form-rephrase">
+    <div class="textarea-rephrase">
+        <textarea rows="4" cols="20" class="form-control" id="textarea-rephrase" placeholder="Введите текст"
+            name="textarea-rephrase" autofocus [(ngModel)]='baseInput' pInputTextarea pInputText
+            pTooltip="Enter text to convert" tooltipPosition="right" #textarea></textarea>
+        <label for="textarea-rephrase"></label>
+    </div>
+    <div class="button-rephrase">
+        <p-toast></p-toast>
+        <p-button label="Convert" icon="pi pi-plus" (onClick)="handleRephrase(baseInput); textarea.focus()"
+            [disabled]="!baseInput || (!repeats || repeats === 0) && tabName=='(generator)'">
+        </p-button>
+        <p-button label="Add to Clipboard" icon="pi pi-arrow-right" (onClick)="addToClipboard(); textarea.focus()"
+            [disabled]="!baseInput"></p-button>
+    </div>
+    <div class="output-rephrase">
+        <output pInputTextarea (click)="addOutputToClipboard()" (mouseenter)="onOutputMouseEnter()"
+            (mouseleave)="onOutputMouseLeave()" [ngClass]="highlight" *ngIf="baseOutput">{{baseOutput}}</output>
+        <output pInputTextarea class="empty-output-message" *ngIf="!baseOutput">Convert data first</output>
+    </div>
+</form>
