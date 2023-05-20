@@ -27,10 +27,6 @@ export class GeneratorComponent {
     })
   }
 
-  ngAfterViewChecked() {
-    this.generatorService.transferRepeatsData(this.repeats!);
-  }
-
   handleRephrase(): void {
     this.baseOutput = this.baseInput;
   }
@@ -43,6 +39,8 @@ export class GeneratorComponent {
     } else {
       this.repeats = undefined;
     }
+    this.generatorService.transferRepeatsData(this.repeats!);
   }
+  
 
 }
