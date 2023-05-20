@@ -10,6 +10,7 @@ import { DataTransferService } from 'src/app/common/services/data-transfer.servi
 export class MeaningsComponent {
 
   tabName: string = '(meanings)';
+  selectedStyle: string ='green';
   baseInput: string = '';
   baseOutput: string = '';
 

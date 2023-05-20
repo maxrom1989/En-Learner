@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { MainDataService } from '../../services/main-data.service';
 import { DataTransferService } from '../../services/data-transfer.service';
@@ -13,6 +13,8 @@ import { ClipboardToDataService } from '../../services/clipboard-to-data.service
 })
 
 export class InputOutputComponent {
+
+  @ViewChild('textarea', { static: false }) textarea!: ElementRef;
 
   baseInput: string = '';
   baseOutput: string = '';
@@ -51,6 +53,11 @@ export class InputOutputComponent {
     this.generatorService.repeatsData$.subscribe((repeats) => {
       this.repeats = repeats;
     });
+    
+  }
+
+  ngAfterViewInit() {
+    this.textarea.nativeElement.focus();
   }
 
   ngAfterViewChecked() { }

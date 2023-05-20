@@ -4,8 +4,9 @@
             <label for="input-generator">Кол-во повторений: </label>
             <input pInputText id="input-generator" formControlName="formRepeats" (input)="handleInput($event)"
                 [pTooltip]="generatorForm.get('formRepeats')!.invalid ? 'Only numbers are allowed' : 'Input repeats number' "
-                tooltipPosition="right" />
+                tooltipPosition="right" 
+                [(ngModel)]='repeats'/>
         </div>
     </div>
 </form>
-<input-output [tabName]="tabName"></input-output>
+<input-output [tabName]="tabName" [selectedStyle]="selectedStyle"></input-output>

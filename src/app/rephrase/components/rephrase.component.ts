@@ -5,6 +5,7 @@ import { RephraseMethod } from 'src/app/common/interfaces/rephrase-method';
 import { MainDataService } from 'src/app/common/services/main-data.service';
 import { DataTransferService } from 'src/app/common/services/data-transfer.service';
 import { RephraseService } from 'src/app/common/services/rephrase.service';
+import { InputOutputComponent } from 'src/app/common/components/input-output/input-output.component';
 
 @Component({
   selector: 'app-rephrase',
@@ -20,6 +21,7 @@ export class RephraseComponent implements OnInit {
     { name: 'Regular', forLabel: 'R' }
   ];
   tabName: string = '(rephrase)';
+  selectedStyle: string ='red';
   baseInput: string = '';
   baseOutput: string = '';
   errorMessage?: string;

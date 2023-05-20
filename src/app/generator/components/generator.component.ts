@@ -13,6 +13,7 @@ export class GeneratorComponent {
 
   numberPattern: string = '^[0-9]+$';
   tabName: string = '(generator)';
+  selectedStyle: string ='blue';
   generatorForm!: FormGroup;
   tabs: ITabItem[] = [];
   baseInput: string = '';
