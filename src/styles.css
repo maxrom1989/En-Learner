@@ -1,23 +1,24 @@
 @import "primeicons/primeicons.css";
 
 :root {
-    --headings-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --headings-font-family: -apple-system, 
+    BlinkMacSystemFont, "Segoe UI", 
+    Roboto, Helvetica, Arial, sans-serif, 
+    "Apple Color Emoji", "Segoe UI Emoji", 
+    "Segoe UI Symbol";
 }
+
 * {
     padding: 0;
     margin: 0;
 }
 
-html, body { 
+html,
+body {
     height: 100%;
- }
-
-body { margin: 0; font-family: var(--headings-font-family); }
-
-.p-radiobutton {
-    margin-right: 5px;
 }
 
-.p-button {
-    margin-left:15px;
+body {
+    margin: 0;
+    font-family: var(--headings-font-family);
 }

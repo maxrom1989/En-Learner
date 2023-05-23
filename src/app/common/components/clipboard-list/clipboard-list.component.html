@@ -1,15 +1,15 @@
-<header class="header">
-    <div class="container">
+<header class="clipboard-header">
+    <div class="clipboard-container">
         <h2>Clipboard</h2>
     </div>
 </header>
-<p-listbox #listbox [options]="serviceData" [disabled]="serviceData[0].input===''" [(ngModel)]="clipboardItem"
-    optionLabel="input" [listStyle]="{ 'height': '464px','max-width': '425px'}" [style]="{ width: '100%'}"
+<p-listbox #listbox [options]="serviceData" [disabled]="!serviceData[0].input" [(ngModel)]="clipboardItem"
+    optionLabel="input" [listStyle]="listBoxHeight" [style]="listBoxWidth"
     (onClick)="transferClipboardToData(clipboardItem!.input)">
     <ng-template let-data let-i='index' pTemplate="item">
         <div class="clipboard-item">
-            <div [ngClass]="data.style" class="column">{{ data.input }} {{data.tab}}</div>
-            <span *ngIf="data.input || data.tab" class="column" (click)="deleteClipboardItem(i)">
+            <div [ngClass]="data.style" class="column-left">{{ data.input }} {{data.tab}}</div>
+            <span *ngIf="data.input || data.tab" class="column-right" (click)="deleteClipboardItem(i)">
                 ❌
             </span>
         </div>

@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputOutputComponent } from './input-output.component';
-import { RephraseComponent } from 'src/app/rephrase/components/rephrase.component';
-import { RephraseModule } from 'src/app/rephrase/rephrase.module';
 import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { MessagesModule } from 'primeng/messages';
 
 @NgModule({
   declarations: [InputOutputComponent],
@@ -16,7 +15,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     FormsModule,
     ToastModule,
     ButtonModule,
-    InputTextareaModule
+    InputTextareaModule,
+    MessagesModule
   ]
 })
 export class InputOutputModule { }

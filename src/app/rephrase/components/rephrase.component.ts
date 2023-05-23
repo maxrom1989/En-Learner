@@ -1,35 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { EMPTY, catchError } from 'rxjs';
-import { MessageService } from 'primeng/api';
-import { RephraseMethod } from 'src/app/common/interfaces/rephrase-method';
-import { MainDataService } from 'src/app/common/services/main-data.service';
-import { DataTransferService } from 'src/app/common/services/data-transfer.service';
-import { RephraseService } from 'src/app/common/services/rephrase.service';
-import { InputOutputComponent } from 'src/app/common/components/input-output/input-output.component';
+import { MainDataService } from '../../common/services/main-data.service';
+import { RephraseService } from '../../common/services/rephrase.service';
+import { IRephraseMethod } from '../../common/interfaces/rephrase-method.interface';
+import { ITabName } from 'src/app/common/interfaces/tab-name.interface';
+import { ITabStyle } from 'src/app/common/interfaces/tab-style.interface';
 
 @Component({
   selector: 'app-rephrase',
   templateUrl: './rephrase.component.html',
   styleUrls: ['../../common/components/header/header-app.component.css', './rephrase.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class RephraseComponent implements OnInit {
+export class RephraseComponent implements OnInit, AfterViewChecked {
 
-  rephraseMethods: RephraseMethod[] = [
+  rephraseMethods: IRephraseMethod[] = [
     { name: 'Polite', forLabel: 'P' },
     { name: 'Official', forLabel: 'O' },
     { name: 'Regular', forLabel: 'R' }
   ];
-  tabName: string = '(rephrase)';
-  selectedStyle: string ='red';
+  tabName: ITabName = '(rephrase)';
+  selectedStyle: ITabStyle ='red';
   baseInput: string = '';
   baseOutput: string = '';
   errorMessage?: string;
-  selectedRephraseMethod?: RephraseMethod;
+  selectedRephraseMethod?: IRephraseMethod;
   constructor(public mainDataService: MainDataService,
-    private messageService: MessageService,
-    private dataTransferService: DataTransferService,
-    private rephraseService: RephraseService) { }
+    private rephraseService: RephraseService,
+    private changeDetector : ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.selectedRephraseMethod = this.rephraseMethods[0];
@@ -49,28 +48,23 @@ export class RephraseComponent implements OnInit {
     this.rephraseService.setRephraseMethod(this.selectedRephraseMethod!);
   }
 
-  handleRephrase(input: string): void {
-    this.mainDataService.getAnswer(input).subscribe({
-      next: (res) => {
-        this.messageService.add(
-          { severity: 'info', summary: 'Success', detail: 'Data Saved' });
-        this.baseOutput = res;
-      },
-      error: (err) => {
-        this.messageService.add(
-          { severity: 'error', summary: 'Error', detail: err });
-        console.warn(err);
-      }
-    })
-  };
+  // handleRephrase(input: string): void {
+  //   this.mainDataService.getAnswer(input).subscribe({
+  //     next: (res) => {
+  //       this.messageService.add(
+  //         { severity: 'info', summary: 'Success', detail: 'Data Saved' });
+  //       this.baseOutput = res;
+  //     },
+  //     error: (err) => {
+  //       this.messageService.add(
+  //         { severity: 'error', summary: 'Error', detail: err });
+  //       console.warn(err);
+  //     }
+  //   })
+  // };
 
-  update() {
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Added to ClipBoard' });
-  }
+  // update() {
+  //   this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Added to ClipBoard' });
+  // }
   
 }
-
-
-
-
-

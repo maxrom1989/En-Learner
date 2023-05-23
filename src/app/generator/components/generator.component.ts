@@ -1,32 +1,43 @@
-import { Component } from '@angular/core';
+
+import { ChangeDetectionStrategy, Component, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ITabItem } from 'src/app/common/interfaces/tab-item.interface';
+import { ITabItem } from 'src/app/common/interfaces/tab-item.interface.interface';
+import { ITabName } from 'src/app/common/interfaces/tab-name.interface';
+import { ITabStyle } from 'src/app/common/interfaces/tab-style.interface';
 import { GeneratorService } from 'src/app/common/services/generator.service';
 
 @Component({
   selector: 'app-generator',
   templateUrl: './generator.component.html',
-  styleUrls: ['../../common/components/header/header-app.component.css', './generator.component.css']
+  styleUrls: ['../../common/components/header/header-app.component.css', './generator.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class GeneratorComponent {
 
   numberPattern: string = '^[0-9]+$';
-  tabName: string = '(generator)';
-  selectedStyle: string ='blue';
+  tabName: ITabName = '(generator)';
+  selectedStyle: ITabStyle = 'blue';
   generatorForm!: FormGroup;
   tabs: ITabItem[] = [];
   baseInput: string = '';
   baseOutput: string = '';
   repeats?: number;
 
-  constructor(private generatorService: GeneratorService) {
+  constructor(private generatorService: GeneratorService,
+    private changeDetector: ChangeDetectorRef) {
     this.generatorForm = new FormGroup({
       'formRepeats': new FormControl('', [
         Validators.pattern(this.numberPattern)])
     })
   }
 
+
+  tooltip(): string {
+    return this.generatorForm!.get('formRepeats')!
+      .invalid ? 'Only numbers are allowed' : 'Input repeats number';
+  }
+  
   handleRephrase(): void {
     this.baseOutput = this.baseInput;
   }
@@ -40,7 +51,7 @@ export class GeneratorComponent {
       this.repeats = undefined;
     }
     this.generatorService.transferRepeatsData(this.repeats!);
+    // this.changeDetector.detectChanges();
   }
   
-
 }

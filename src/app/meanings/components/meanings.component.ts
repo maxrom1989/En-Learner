@@ -1,22 +1,22 @@
-import { Component } from '@angular/core';
-import { DataTransferService } from 'src/app/common/services/data-transfer.service';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { ITabName } from 'src/app/common/interfaces/tab-name.interface';
+import { ITabStyle } from 'src/app/common/interfaces/tab-style.interface';
 
 @Component({
   selector: 'app-meanings',
   templateUrl: './meanings.component.html',
-  styleUrls: ['../../common/components/header/header-app.component.css', './meanings.component.css']
+  styleUrls: ['./meanings.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class MeaningsComponent {
 
-  tabName: string = '(meanings)';
-  selectedStyle: string ='green';
+  tabName: ITabName = '(meanings)';
+  selectedStyle: ITabStyle ='green';
   baseInput: string = '';
   baseOutput: string = '';
 
-  constructor(private dataTransferService: DataTransferService) { }
-
-  ngOnInit() { }
+  constructor(private changeDetector: ChangeDetectorRef) { }
 
   handleRephrase(): void {
     this.baseOutput = this.baseInput;

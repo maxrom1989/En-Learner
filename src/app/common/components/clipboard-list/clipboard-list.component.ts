@@ -1,32 +1,36 @@
-import { Component, Input } from '@angular/core';
-import { InputDataTransfer } from '../../interfaces/input-data-transfer';
+import { Component, Input, OnInit, AfterViewChecked, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { IInputDataTransfer } from '../../interfaces/input-data-transfer.interface';
 import { DataTransferService } from '../../services/data-transfer.service';
 import { ClipboardToDataService } from '../../services/clipboard-to-data.service';
 
 @Component({
   selector: 'clipboard-list',
   templateUrl: './clipboard-list.component.html',
-  styleUrls: ['./clipboard-list.component.css']
+  styleUrls: ['./clipboard-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class ClipboardListComponent {
+export class ClipboardListComponent implements OnInit, AfterViewChecked{
 
   @Input() selectedTabName?: string;
 
   inputData: string = '';
   tabName: string = '';
-  clipboardItem?: InputDataTransfer;
-  serviceData: InputDataTransfer[] = [{
+  clipboardItem?: IInputDataTransfer;
+  serviceData: IInputDataTransfer[] = [{
     input: '',
     tab: '',
     style: ''
   }];
   selectedStyle?: string;
+  listBoxWidth: Object =  {"width": '100%'};
+  listBoxHeight: Object = { 'height': '464px'};
 
   constructor(private dataTransferService: DataTransferService,
-    private clipboardToData: ClipboardToDataService) { }
+    private clipboardToData: ClipboardToDataService,
+    private changeDetector: ChangeDetectorRef) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.dataTransferService.currentData.subscribe(data => {
       const existingDataIndex = this.serviceData.findIndex(
         _data => _data.input === data.input);
@@ -38,6 +42,7 @@ export class ClipboardListComponent {
       if (this.serviceData.length > 0) {
         this.clipboardItem = this.serviceData[0];
       }
+      this.changeDetector.markForCheck();
     });
     if (this.tabName) {
       this.selectedTabName = this.tabName;

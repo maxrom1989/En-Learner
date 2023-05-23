@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// import { InputOutputComponent } from '../common/components/input-output/input-output.component';
 import { RephraseComponent } from './components/rephrase.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { FormsModule } from '@angular/forms';

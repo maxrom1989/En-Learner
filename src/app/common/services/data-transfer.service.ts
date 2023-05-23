@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, of } from 'rxjs';
-import { InputDataTransfer } from '../interfaces/input-data-transfer';
+import { IInputDataTransfer } from '../interfaces/input-data-transfer.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ import { InputDataTransfer } from '../interfaces/input-data-transfer';
 
 export class DataTransferService {
 
-  private data$ = new BehaviorSubject<InputDataTransfer>({ input: '', tab: '', style: '' });
+  private data$ = new BehaviorSubject<IInputDataTransfer>({ input: '', tab: '', style: '' });
   currentData = this.data$.asObservable();
 
   constructor() { }

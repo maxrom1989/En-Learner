@@ -1,12 +1,8 @@
-<form [formGroup]="generatorForm" class="menu-generator">
-    <div class="generator-method">
-        <div class="radio-buttons form-group">
-            <label for="input-generator">Кол-во повторений: </label>
-            <input pInputText id="input-generator" formControlName="formRepeats" (input)="handleInput($event)"
-                [pTooltip]="generatorForm.get('formRepeats')!.invalid ? 'Only numbers are allowed' : 'Input repeats number' "
-                tooltipPosition="right" 
-                [(ngModel)]='repeats'/>
-        </div>
+<form [formGroup]="generatorForm" class="generator-container">
+    <div class="repeats-container form-group">
+        <label for="repeats-inputID">Кол-во повторений: </label>
+        <input pInputText id="repeats-inputID" formControlName="formRepeats" (input)="handleInput($event)"
+            [pTooltip]='tooltip()' tooltipPosition="right" />
     </div>
 </form>
 <input-output [tabName]="tabName" [selectedStyle]="selectedStyle"></input-output>

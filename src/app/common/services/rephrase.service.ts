@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RephraseMethod } from '../interfaces/rephrase-method';
+import { IRephraseMethod } from '../interfaces/rephrase-method.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class RephraseService {
 
   constructor() { }
 
-  setRephraseMethod(method: RephraseMethod) {
+  setRephraseMethod(method: IRephraseMethod) {
     this.rephraseMethod = method.name;
   }
 

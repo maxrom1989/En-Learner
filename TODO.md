@@ -110,3 +110,7 @@
 ];
 
 изать https://angular.io/guide/lazy-loading-ngmodules
+
+
+ 
+ChangeDetectionStrategy везде

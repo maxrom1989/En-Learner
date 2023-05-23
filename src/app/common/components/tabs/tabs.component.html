@@ -1,8 +1,6 @@
-<div class="container">
-    <p-tabMenu *ngIf="tabs?.length" [model]="tabs" [activeItem]="activeTab" class="menu-tab-rephrase"
-        (activeItemChange)="onActiveItemChange($event)">
-        <ng-template pTemplate="tab" let-tab>
-            {{tab.componentName}}
-        </ng-template>
-    </p-tabMenu>
-</div>
+<p-tabMenu *ngIf="tabs?.length" [model]="tabs" [activeItem]="activeTab" class="tabs"
+    (activeItemChange)="onActiveItemChange($event)">
+    <ng-template pTemplate="tab" let-tab>
+        {{tab.componentName}}
+    </ng-template>
+</p-tabMenu>

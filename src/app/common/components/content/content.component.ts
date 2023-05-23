@@ -1,42 +1,20 @@
 import { NavigationEnd, Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { filter, take } from 'rxjs';
-import { ITabItem } from '../../interfaces/tab-item.interface';
+import { ITabItem } from '../../interfaces/tab-item.interface.interface';
+import { tabsList } from './helpers/tabsList';
 
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
-  styleUrls: ['./content.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class ContentComponent {
+export class ContentComponent implements OnInit{
 
-  tabsList: ITabItem[] = [
-    {
-      componentName: 'Rephrase',
-      routerLink: ['/RephraseComponent'],
-      clipboardName: '(rephrase)',
-      styleClass: 'red',
-      isSelected: true
-    },
-    {
-      componentName: 'Meanings',
-      routerLink: ['/MeaningsComponent'],
-      clipboardName: '(meanings)',
-      styleClass: 'green',
-      isSelected: false
-    },
-    {
-      componentName: 'Generator',
-      routerLink: ['/GeneratorComponent'],
-      clipboardName: '(generator)',
-      styleClass: 'blue',
-      isSelected: false
-    }
-  ];
+  tabsList: ITabItem[] = tabsList;
   repeats?: number = 2;
-  selectedTabName: string = this.tabsList.find(
-    (tab) => tab.isSelected)?.clipboardName!;
+  selectedTabName: string = this.tabsList.find((tab) => tab.isSelected)?.clipboardName!;
   selectedStyle: string = '';
 
   constructor(private router: Router) { }

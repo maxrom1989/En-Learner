@@ -1,26 +1,40 @@
-.header {
+.clipboard-header {
     padding: 25px 0;
     margin-right: 15px;
-    color: #6c757d;
     font-size: 16px;
+    color: #6c757d;
 }
 
-.header .container {
+.clipboard-header .clipboard-container {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .clipboard-item {
-    display: grid;
+    /* display: grid;
     grid-template-columns: 10fr 1fr;   
-    margin-top: 10px; 
+    margin-top: 10px; */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-around; */
 }
 
-.column {
+.column-left {
+    margin-right: auto;
     word-break: break-word;
-  }
-  
+}
+
+.column-right {
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.column-right:hover {
+    scale: 1.5;
+}
+
 .red {
     color: red;
 }
@@ -32,17 +46,3 @@
 .blue {
     color: blue;
 }
-
-span.column {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    flex-wrap: wrap;
-}
-
-span.column:hover {
-    position: relative;
-    scale: 1.5;
-    cursor: pointer;
-  }

@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, OnInit, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { MainDataService } from '../../services/main-data.service';
 import { DataTransferService } from '../../services/data-transfer.service';
@@ -9,10 +9,11 @@ import { ClipboardToDataService } from '../../services/clipboard-to-data.service
 @Component({
   selector: 'input-output',
   templateUrl: './input-output.component.html',
-  styleUrls: ['../header/header-app.component.css', './input-output.component.css']
+  styleUrls: ['../header/header-app.component.css', './input-output.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class InputOutputComponent {
+export class InputOutputComponent implements OnInit, AfterViewInit {
 
   @ViewChild('textarea', { static: false }) textarea!: ElementRef;
 
@@ -24,13 +25,15 @@ export class InputOutputComponent {
   highlight: string = '';
   rephraseMethod?: string;
   repeats?: number;
+  buttonWidth: Object = { "width": '210px' };
 
   constructor(public mainDataService: MainDataService,
     private messageService: MessageService,
     private dataTransferService: DataTransferService,
     private clipboardToData: ClipboardToDataService,
     private rephraseService: RephraseService,
-    private generatorService: GeneratorService) {
+    private generatorService: GeneratorService,
+    private changeDetector: ChangeDetectorRef) {
     this.buttonItems = [
       {
         label: 'Add To Clipboard',
@@ -49,24 +52,27 @@ export class InputOutputComponent {
       if (lastData) {
         this.baseInput = lastData;
       }
+      // this.changeDetector.detectChanges();
+      this.changeDetector.markForCheck()
     });
     this.generatorService.repeatsData$.subscribe((repeats) => {
       this.repeats = repeats;
+      // this.changeDetector.detectChanges();
+      this.changeDetector.markForCheck()
     });
-    
+
   }
 
   ngAfterViewInit() {
     this.textarea.nativeElement.focus();
   }
 
-  ngAfterViewChecked() { }
 
   handleRephrase(input: string): void {
     this.mainDataService.getAnswer(input).subscribe({
       next: (res) => {
         this.messageService.add(
-          { severity: 'info', summary: 'Success', detail: "Data: " + this.baseInput + " Saved" });
+          { severity: 'info', summary: 'Success', detail: `Data ${this.baseInput} Saved` });
         this.baseOutput = res;
       },
       error: (err) => {
@@ -77,6 +83,8 @@ export class InputOutputComponent {
     });
     const selectedMethod = this.rephraseService.rephraseMethod;
     this.rephraseMethod = selectedMethod;
+    this.textarea.nativeElement.focus();
+    // this.changeDetector.detectChanges();
   }
 
   update() {
@@ -86,6 +94,7 @@ export class InputOutputComponent {
   addToClipboard() {
     this.dataTransferService.transferData(this.baseInput, this.tabName, this.selectedStyle);
     this.update();
+    this.textarea.nativeElement.focus();
   }
 
   addOutputToClipboard() {
@@ -99,6 +108,11 @@ export class InputOutputComponent {
 
   onOutputMouseLeave() {
     this.highlight = '';
+  }
+
+  isDisabled(): boolean {
+    const disabled = !this.baseInput || (!this.repeats || this.repeats === 0) && this.tabName == '(generator)';
+    return disabled;
   }
 
 }

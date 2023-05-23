@@ -1,0 +1,1 @@
+export type ITabName = '(rephrase)' | '(meanings)' | '(generator)';

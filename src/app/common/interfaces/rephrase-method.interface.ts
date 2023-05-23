@@ -1,4 +1,4 @@
-export interface RephraseMethod {
+export interface IRephraseMethod { 
     name: string;
     forLabel: string;
 }

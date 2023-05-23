@@ -1,21 +1,27 @@
-<form class="form-rephrase">
-    <div class="textarea-rephrase">
-        <textarea rows="4" cols="20" class="form-control" id="textarea-rephrase" placeholder="Введите текст"
-            name="textarea-rephrase" autofocus [(ngModel)]='baseInput' pInputTextarea pInputText
+<form class="input-output-form">
+    <div class="textarea-container">
+        <textarea rows="4" cols="20" class="form-control" id="textarea-inputID" placeholder="Введите текст"
+            name="textarea-inputName" autofocus [(ngModel)]='baseInput' pInputTextarea pInputText
             pTooltip="Enter text to convert" tooltipPosition="right" #textarea></textarea>
-        <label for="textarea-rephrase"></label>
+        <label for="textarea-inputID"></label>
     </div>
-    <div class="button-rephrase">
+    <div class="button-container">
         <p-toast></p-toast>
-        <p-button label="Convert" icon="pi pi-plus" (onClick)="handleRephrase(baseInput); textarea.focus()"
-            [disabled]="!baseInput || (!repeats || repeats === 0) && tabName=='(generator)'">
+        <p-button label="Convert" icon="pi pi-plus" (onClick)="handleRephrase(baseInput)" [disabled]="isDisabled()">
         </p-button>
-        <p-button label="Add to Clipboard" icon="pi pi-arrow-right" (onClick)="addToClipboard(); textarea.focus()"
-            [disabled]="!baseInput"></p-button>
+        <p-button label="Add to Clipboard" icon="pi pi-arrow-right" (onClick)="addToClipboard()" [disabled]="!baseInput"
+            [style]="buttonWidth">
+        </p-button>
     </div>
-    <div class="output-rephrase">
-        <output pInputTextarea (click)="addOutputToClipboard()" (mouseenter)="onOutputMouseEnter()"
-            (mouseleave)="onOutputMouseLeave()" [ngClass]="highlight" *ngIf="baseOutput">{{baseOutput}}</output>
-        <output pInputTextarea class="empty-output-message" *ngIf="!baseOutput">Convert data first</output>
+    <div class="output-container">
+        <output *ngIf="baseOutput" pInputTextarea [ngClass]="highlight">
+            <span (click)="addOutputToClipboard()" (mouseenter)="onOutputMouseEnter()"
+                (mouseleave)="onOutputMouseLeave()">
+                {{baseOutput}}
+            </span>
+        </output>
+        <output *ngIf="!baseOutput" pInputTextarea class="output-empty">
+            Convert data first
+        </output>
     </div>
 </form>

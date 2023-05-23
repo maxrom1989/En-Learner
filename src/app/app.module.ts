@@ -1,4 +1,4 @@
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -6,22 +6,14 @@ import { HeaderAppComponent } from './common/components/header/header-app.compon
 import { ClipboardListComponent } from './common/components/clipboard-list/clipboard-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { RephraseComponent } from './rephrase/components/rephrase.component';
-// import { MeaningsComponent } from './meanings/components/meanings.component';
-// import { GeneratorComponent } from './generator/components/generator.component';
 import { TabsComponent } from './common/components/tabs/tabs.component';
 import { ContentComponent } from './common/components/content/content.component';
-// import { ButtonModule } from 'primeng/button';
 import { TabViewModule } from 'primeng/tabview';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { RadioButtonModule } from 'primeng/radiobutton';
-// import { ToastModule } from 'primeng/toast';
-// import { InputTextareaModule } from 'primeng/inputtextarea';
-// import { InputOutputComponent } from './common/components/input-output/input-output.component';
 import { MessageService } from 'primeng/api';
 import { TooltipModule } from 'primeng/tooltip';
 import { RippleModule } from 'primeng/ripple';
-// import { InputTextModule } from 'primeng/inputtext';
 import { ListboxModule } from 'primeng/listbox';
 
 const routes: Routes = [

@@ -1,0 +1,11 @@
+.generator-container {
+    margin-bottom: 52.5px;
+}
+
+.repeats-container {
+    margin-bottom: 5px;
+    margin-left: 15px;
+    font-family: var(--headings-font-family);
+    font-weight: 700;
+    color: #6c757d;
+}
