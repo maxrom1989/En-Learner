@@ -9,7 +9,7 @@ import { ITabStyle } from 'src/app/common/interfaces/tab-style.interface';
 @Component({
   selector: 'app-rephrase',
   templateUrl: './rephrase.component.html',
-  styleUrls: ['../../common/components/header/header-app.component.css', './rephrase.component.css'],
+  styleUrls: ['./rephrase.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
@@ -27,11 +27,18 @@ export class RephraseComponent implements OnInit, AfterViewChecked {
   errorMessage?: string;
   selectedRephraseMethod?: IRephraseMethod;
   constructor(public mainDataService: MainDataService,
-    private rephraseService: RephraseService,
-    private changeDetector : ChangeDetectorRef) { }
+    private rephraseService: RephraseService) { }
 
   ngOnInit(): void {
     this.selectedRephraseMethod = this.rephraseMethods[0];
+    this.observeDataFromInput();
+  }
+
+  ngAfterViewChecked() {
+    this.rephraseService.setRephraseMethod(this.selectedRephraseMethod!);
+  }
+
+  observeDataFromInput(): void {
     this.mainDataService.getMainData()
       .pipe(
         catchError((err) => {
@@ -43,11 +50,6 @@ export class RephraseComponent implements OnInit, AfterViewChecked {
         this.baseOutput = _.data!;
       });
   }
-
-  ngAfterViewChecked() {
-    this.rephraseService.setRephraseMethod(this.selectedRephraseMethod!);
-  }
-
   // handleRephrase(input: string): void {
   //   this.mainDataService.getAnswer(input).subscribe({
   //     next: (res) => {

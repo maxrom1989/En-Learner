@@ -1,11 +1,9 @@
 <header class="clipboard-header">
-    <div class="clipboard-container">
-        <h2>Clipboard</h2>
-    </div>
+    <h2>Clipboard</h2>
 </header>
-<p-listbox #listbox [options]="serviceData" [disabled]="!serviceData[0].input" [(ngModel)]="clipboardItem"
+<p-listbox [options]="serviceData" [disabled]="!serviceData[0].input" [(ngModel)]="clipboardItem"
     optionLabel="input" [listStyle]="listBoxHeight" [style]="listBoxWidth"
-    (onClick)="transferClipboardToData(clipboardItem!.input)">
+    (onClick)="transferClipboardToInput(clipboardItem!.input)" #listbox>
     <ng-template let-data let-i='index' pTemplate="item">
         <div class="clipboard-item">
             <div [ngClass]="data.style" class="column-left">{{ data.input }} {{data.tab}}</div>

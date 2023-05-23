@@ -2,12 +2,13 @@ import { Component, Output, Input, EventEmitter, OnInit, ChangeDetectionStrategy
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, take } from 'rxjs';
 import { ITabItem } from '../../interfaces/tab-item.interface.interface';
+import { MenuItem } from 'primeng/api';
 
 
 @Component({
   selector: 'app-tabs',
   templateUrl: './tabs.component.html',
-  styleUrls: ['./tabs.component.css', '../header/header-app.component.css'],
+  styleUrls: ['./tabs.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
@@ -15,27 +16,31 @@ export class TabsComponent implements OnInit{
 
   @Input() tabs: ITabItem[] = [];
 
-  @Output() selectEd = new EventEmitter<{ name: string, styleClass: string }>();
+  @Output() selectedTab = new EventEmitter<{ clipboardName: string, styleClass: string }>();
 
-  activeTab!: ITabItem;
+  activeTab!: { clipboardName: string, styleClass: string };
 
-  constructor(private router: Router,
-    private changeDetector: ChangeDetectorRef) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    this.router.events.pipe(filter((e) => {
-      return e instanceof NavigationEnd
-    }), take(1)).subscribe((res) => {
+    this.routeNavigationEnd();
+  }
+
+  //MenuItem библиотечный интерфейс
+  onActiveItemChange(event: MenuItem): void {
+    this.activeTab.clipboardName = event.label!;
+    this.selectedTab.emit(this.activeTab);
+  }
+
+  routeNavigationEnd(): void {
+    this.router.events.pipe(filter((tabEvent) => {
+      return tabEvent instanceof NavigationEnd
+    }), take(1))
+    .subscribe(() => {
       let prevTab = this.tabs.find((prevTab) => {
         return prevTab.routerLink.includes(this.router.url)
       })
       this.activeTab != prevTab;
     })
   }
-
-  onActiveItemChange(event: any) {
-    this.activeTab = event;
-    this.selectEd.emit(event);
-  }
-
 }

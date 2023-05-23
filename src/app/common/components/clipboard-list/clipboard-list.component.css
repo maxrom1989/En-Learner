@@ -1,14 +1,11 @@
 .clipboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 25px 0;
     margin-right: 15px;
     font-size: 16px;
     color: #6c757d;
-}
-
-.clipboard-header .clipboard-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .clipboard-item {

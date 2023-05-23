@@ -16,7 +16,7 @@ export class MeaningsComponent {
   baseInput: string = '';
   baseOutput: string = '';
 
-  constructor(private changeDetector: ChangeDetectorRef) { }
+  constructor() { }
 
   handleRephrase(): void {
     this.baseOutput = this.baseInput;

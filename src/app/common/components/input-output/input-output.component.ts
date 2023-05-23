@@ -5,11 +5,12 @@ import { DataTransferService } from '../../services/data-transfer.service';
 import { RephraseService } from '../../services/rephrase.service';
 import { GeneratorService } from '../../services/generator.service';
 import { ClipboardToDataService } from '../../services/clipboard-to-data.service';
+import { IStyle } from '../../interfaces/style.interface';
 
 @Component({
   selector: 'input-output',
   templateUrl: './input-output.component.html',
-  styleUrls: ['../header/header-app.component.css', './input-output.component.css'],
+  styleUrls: ['./input-output.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
@@ -25,7 +26,7 @@ export class InputOutputComponent implements OnInit, AfterViewInit {
   highlight: string = '';
   rephraseMethod?: string;
   repeats?: number;
-  buttonWidth: Object = { "width": '210px' };
+  buttonWidth: IStyle = { "width": '210px' };
 
   constructor(public mainDataService: MainDataService,
     private messageService: MessageService,
@@ -33,7 +34,7 @@ export class InputOutputComponent implements OnInit, AfterViewInit {
     private clipboardToData: ClipboardToDataService,
     private rephraseService: RephraseService,
     private generatorService: GeneratorService,
-    private changeDetector: ChangeDetectorRef) {
+    private cdr: ChangeDetectorRef) {
     this.buttonItems = [
       {
         label: 'Add To Clipboard',
@@ -47,33 +48,22 @@ export class InputOutputComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.clipboardToData.data$.subscribe((data) => {
-      const lastData = data;
-      if (lastData) {
-        this.baseInput = lastData;
-      }
-      // this.changeDetector.detectChanges();
-      this.changeDetector.markForCheck()
-    });
-    this.generatorService.repeatsData$.subscribe((repeats) => {
-      this.repeats = repeats;
-      // this.changeDetector.detectChanges();
-      this.changeDetector.markForCheck()
-    });
+    this.observeClipboardToInput();
+    this.observeRepeatsFromGenerator();
 
   }
 
   ngAfterViewInit() {
-    this.textarea.nativeElement.focus();
+    this.textarea.nativeElement.focus(); // тут надо делать метод textareaFocus() ?
   }
 
 
   handleRephrase(input: string): void {
     this.mainDataService.getAnswer(input).subscribe({
-      next: (res) => {
+      next: (response) => {
         this.messageService.add(
           { severity: 'info', summary: 'Success', detail: `Data ${this.baseInput} Saved` });
-        this.baseOutput = res;
+        this.baseOutput = response;
       },
       error: (err) => {
         this.messageService.add(
@@ -87,32 +77,51 @@ export class InputOutputComponent implements OnInit, AfterViewInit {
     // this.changeDetector.detectChanges();
   }
 
-  update() {
+  update(): void {
     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Added to ClipBoard' });
   }
 
-  addToClipboard() {
+  addToClipboard(): void {
     this.dataTransferService.transferData(this.baseInput, this.tabName, this.selectedStyle);
     this.update();
     this.textarea.nativeElement.focus();
   }
 
-  addOutputToClipboard() {
+  addOutputToClipboard(): void {
     this.dataTransferService.transferData(this.baseOutput, this.tabName, this.selectedStyle);
     this.update();
   }
 
-  onOutputMouseEnter() {
+  onOutputMouseEnter(): void {
     this.highlight = 'highlight';
   }
 
-  onOutputMouseLeave() {
+  onOutputMouseLeave(): void {
     this.highlight = '';
   }
 
   isDisabled(): boolean {
-    const disabled = !this.baseInput || (!this.repeats || this.repeats === 0) && this.tabName == '(generator)';
+    const disabled = !this.baseInput || (!this.repeats && this.tabName == '(generator)');
     return disabled;
+  }
+
+  observeClipboardToInput(): void {
+    this.clipboardToData.data$.subscribe((input) => {
+      const lastData = input;
+      if (lastData) {
+        this.baseInput = lastData;
+      }
+      // this.changeDetector.detectChanges();
+      this.cdr.markForCheck()
+    });
+  }
+
+  observeRepeatsFromGenerator(): void {
+    this.generatorService.repeatsData$.subscribe((repeats) => {
+      this.repeats = repeats;
+      // this.changeDetector.detectChanges();
+      this.cdr.markForCheck()
+    });
   }
 
 }

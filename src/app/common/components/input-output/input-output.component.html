@@ -6,7 +6,6 @@
         <label for="textarea-inputID"></label>
     </div>
     <div class="button-container">
-        <p-toast></p-toast>
         <p-button label="Convert" icon="pi pi-plus" (onClick)="handleRephrase(baseInput)" [disabled]="isDisabled()">
         </p-button>
         <p-button label="Add to Clipboard" icon="pi pi-arrow-right" (onClick)="addToClipboard()" [disabled]="!baseInput"
@@ -25,3 +24,5 @@
         </output>
     </div>
 </form>
+
+<p-toast></p-toast>

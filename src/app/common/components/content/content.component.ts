@@ -13,30 +13,42 @@ import { tabsList } from './helpers/tabsList';
 export class ContentComponent implements OnInit{
 
   tabsList: ITabItem[] = tabsList;
-  repeats?: number = 2;
-  selectedTabName: string = this.tabsList.find((tab) => tab.isSelected)?.clipboardName!;
-  selectedStyle: string = '';
+
+  selectedTab: ITabItem = this.tabsList.find((tab) => tab.isSelected)!;
+
+  get selectedTabName(): string {
+    return this.selectedTab?.clipboardName ?? '';
+  }
+  
+  get selectedStyle(): string {
+    return this.selectedTab?.styleClass ?? '';
+  }
 
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.routeNavigationEnd();
+  }
+
+  onTabNameSelected(event: {clipboardName: string, styleClass: string}): void {
+    this.selectedTab.clipboardName = event.clipboardName;
+    this.selectedTab.styleClass = event.styleClass;
+  }
+
+  routeNavigationEnd(): void{
     this.router.events.pipe(
-      filter((e) => {
-        return e instanceof NavigationEnd
+      filter((tabEvent) => {
+        return tabEvent instanceof NavigationEnd
       }),
       take(1)
     ).subscribe(() => {
       let prevTab = this.tabsList.find((tab) => {
         return tab.routerLink.includes(this.router.url)
+        
       })
-      this.selectedTabName = prevTab!.clipboardName;
-      this.selectedStyle = prevTab!.styleClass;
+      this.selectedTab.clipboardName = prevTab!.clipboardName;
+      this.selectedTab.styleClass = prevTab!.styleClass;
     })
-  }
-
-  onTabNameSelected(event: any) {
-    this.selectedTabName = event.clipboardName;
-    this.selectedStyle = event.styleClass;
   }
 
 }

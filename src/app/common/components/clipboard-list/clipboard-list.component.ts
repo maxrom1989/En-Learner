@@ -1,7 +1,8 @@
-import { Component, Input, OnInit, AfterViewChecked, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { IInputDataTransfer } from '../../interfaces/input-data-transfer.interface';
 import { DataTransferService } from '../../services/data-transfer.service';
 import { ClipboardToDataService } from '../../services/clipboard-to-data.service';
+import { IStyle } from '../../interfaces/style.interface';
 
 @Component({
   selector: 'clipboard-list',
@@ -10,51 +11,27 @@ import { ClipboardToDataService } from '../../services/clipboard-to-data.service
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class ClipboardListComponent implements OnInit, AfterViewChecked{
+export class ClipboardListComponent implements OnInit {
 
-  @Input() selectedTabName?: string;
-
-  inputData: string = '';
-  tabName: string = '';
   clipboardItem?: IInputDataTransfer;
   serviceData: IInputDataTransfer[] = [{
     input: '',
     tab: '',
     style: ''
   }];
-  selectedStyle?: string;
-  listBoxWidth: Object =  {"width": '100%'};
-  listBoxHeight: Object = { 'height': '464px'};
+  listBoxWidth: IStyle =  {'width': '100%'};
+  listBoxHeight: IStyle = {'height': '464px'};
 
   constructor(private dataTransferService: DataTransferService,
     private clipboardToData: ClipboardToDataService,
-    private changeDetector: ChangeDetectorRef) { }
+    private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.dataTransferService.currentData.subscribe(data => {
-      const existingDataIndex = this.serviceData.findIndex(
-        _data => _data.input === data.input);
-      if (existingDataIndex !== -1) {
-        this.serviceData.splice(existingDataIndex, 1);
-      }
-      this.serviceData.unshift(data);
-      this.inputData = data.input;
-      if (this.serviceData.length > 0) {
-        this.clipboardItem = this.serviceData[0];
-      }
-      this.changeDetector.markForCheck();
-    });
-    if (this.tabName) {
-      this.selectedTabName = this.tabName;
-    }
+    this.observeClipboardList();
   }
 
-  ngAfterViewChecked() {
-    this.serviceData;
-  }
-
-  transferClipboardToData(data: string) {
-    this.clipboardToData.transferData(data);
+  transferClipboardToInput(serviceDataInput: string): void {
+    this.clipboardToData.transferData(serviceDataInput);
   }
 
   deleteClipboardItem(index: number): void {
@@ -62,6 +39,19 @@ export class ClipboardListComponent implements OnInit, AfterViewChecked{
       this.serviceData.splice(index, 1);
     }
   }
+
+  observeClipboardList(): void {
+    this.dataTransferService.currentData.subscribe(incomingData => {
+      const existingDataIndex = this.serviceData.findIndex(
+        index => index.input === incomingData.input);
+      if (existingDataIndex !== -1) {
+        this.serviceData.splice(existingDataIndex, 1);
+      }
+      this.serviceData.unshift(incomingData);
+      this.clipboardItem = this.serviceData?.[0]
+      this.cdr.markForCheck();
+    });
+  }  
 
 }
 
