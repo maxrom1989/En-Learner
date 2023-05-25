@@ -16,9 +16,9 @@ export class TabsComponent implements OnInit{
 
   @Input() tabs: ITabItem[] = [];
 
-  @Output() selectedTab = new EventEmitter<{ clipboardName: string, styleClass: string }>();
+  @Output() selectedTab = new EventEmitter<MenuItem>();
 
-  activeTab!: { clipboardName: string, styleClass: string };
+  activeTab!: MenuItem;
 
   constructor(private router: Router) { }
 
@@ -28,7 +28,10 @@ export class TabsComponent implements OnInit{
 
   //MenuItem библиотечный интерфейс
   onActiveItemChange(event: MenuItem): void {
-    this.activeTab.clipboardName = event.label!;
+    this.activeTab=event;
+    // console.log(event)
+    // this.activeTab.clipboardName = event.label!;
+    console.log('this.activeTab ', this.activeTab)
     this.selectedTab.emit(this.activeTab);
   }
 

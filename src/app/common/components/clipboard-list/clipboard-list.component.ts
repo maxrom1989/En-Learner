@@ -19,8 +19,8 @@ export class ClipboardListComponent implements OnInit {
     tab: '',
     style: ''
   }];
-  listBoxWidth: IStyle =  {'width': '100%'};
-  listBoxHeight: IStyle = {'height': '464px'};
+  listBoxWidth: IStyle =  {width: '100%'};
+  listBoxHeight: IStyle = {height: '464px'};
 
   constructor(private dataTransferService: DataTransferService,
     private clipboardToData: ClipboardToDataService,
@@ -43,7 +43,7 @@ export class ClipboardListComponent implements OnInit {
   observeClipboardList(): void {
     this.dataTransferService.currentData.subscribe(incomingData => {
       const existingDataIndex = this.serviceData.findIndex(
-        index => index.input === incomingData.input);
+        item => item.input === incomingData.input);
       if (existingDataIndex !== -1) {
         this.serviceData.splice(existingDataIndex, 1);
       }

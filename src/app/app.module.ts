@@ -15,6 +15,7 @@ import { MessageService } from 'primeng/api';
 import { TooltipModule } from 'primeng/tooltip';
 import { RippleModule } from 'primeng/ripple';
 import { ListboxModule } from 'primeng/listbox';
+import { SupportDialogComponent } from './common/components/support/support-dialog.component';
 
 const routes: Routes = [
   {
@@ -38,7 +39,7 @@ const routes: Routes = [
     HeaderAppComponent,
     ClipboardListComponent,
     TabsComponent,
-    ContentComponent,
+    ContentComponent
   ],
   imports: [
     FormsModule,
@@ -51,6 +52,7 @@ const routes: Routes = [
     RippleModule,
     ListboxModule,
     ReactiveFormsModule,
+    SupportDialogComponent,
     RouterModule.forRoot(routes),
   ],
   providers: [MessageService],

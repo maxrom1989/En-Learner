@@ -1,0 +1,74 @@
+.topic {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    gap: 2;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    border-top: 1px solid #E5E5E5;
+
+}
+
+.user {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    gap: 2;
+    /* padding: 30px 0; */
+}
+
+.textarea {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    gap: 2;
+    padding-top: 30px;
+}
+
+.text-danger {
+    color: red;
+    padding-bottom: 10px;
+}
+
+.error {
+    color: red;
+    padding-bottom: 10px;
+}
+
+.p-inputtextarea {
+    height: 150px;
+}
+
+/* .topic > label {
+    margin-bottom: 5px;
+} */
+
+.topic-label {
+    font-weight: 700;
+    color: #343a40;
+    margin-bottom: 5px;
+}
+
+.button {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    gap: 2;
+    padding-top: 30px;
+}
+
+.required:before {
+    color: #ff4d4f;
+    content: "*"
+}
+
+.full-width-dropdown {
+    display: flex;
+    flex-direction: column;
+}
+
+.full-width-dropdown .p-dropdown-label,
+.full-width-dropdown .p-dropdown-trigger {
+    flex: 1;
+}

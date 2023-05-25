@@ -1,7 +1,22 @@
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
+    position: relative;
+    text-align: center;
     padding: 25px 0;
     border-bottom: 1px solid #E5E5E5;
+}
+
+.header-title {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.support-dialog-container {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
 }

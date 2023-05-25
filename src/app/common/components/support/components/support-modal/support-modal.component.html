@@ -1,0 +1,29 @@
+<form class="modal-container">
+    <div class="topic">
+        <label for="topicID" class="topic-label" [ngClass]="{'required': !selectedTopic}">Topic:</label>
+        <div *ngIf="error" class="error">{{error}}</div>
+        <p-dropdown [options]="topics" [(ngModel)]="selectedTopic" placeholder="Select a topic" inputId="topicID"
+            name="topic" class="full-width-dropdown"></p-dropdown>
+    </div>
+    <div class="user">
+        <label for="userId" class="topic-label" [ngClass]="{'required': !supportUser}">Email or Phone:</label>
+        <input pInputText id="userId" aria-describedby="topic-help" [(ngModel)]="supportUser" name="userForm"
+            [pattern]="pattern" title="Enter a valid email or phone number" placeholder="Enter email or phone" required
+            #userForm="ngModel" />
+        <div *ngIf="userForm.invalid && userForm.touched" class="dang">
+            <div class="text-danger" *ngIf="userForm.hasError('required')">Email or Phone is required.</div>
+            <div class="text-danger" *ngIf="userForm.hasError('pattern')">Enter a valid email or phone number.</div>
+        </div>
+    </div>
+    <div class="textarea">
+        <label for="userId" class="topic-label" [ngClass]="{'required': !supportMessage}">Text:</label>
+        <textarea rows="4" cols="20" class="form-control" id="textarea-inputID" placeholder="Enter issue"
+            name="textarea-inputName" autofocus [(ngModel)]='supportMessage' pInputTextarea pInputText
+            pTooltip="Enter text to convert" tooltipPosition="right" #textarea></textarea>
+    </div>
+    <div class="button">
+        <p-button *ngIf="!showSpinner" label="Submit" icon="pi pi-plus" [disabled]="userForm.invalid || isDisabled"
+            (onClick)="submitForm()" name="submit-button" #submitButton></p-button>
+        <p-progressSpinner *ngIf="showSpinner" class="spinner"></p-progressSpinner>
+    </div>
+</form>

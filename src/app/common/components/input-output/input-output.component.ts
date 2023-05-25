@@ -101,8 +101,7 @@ export class InputOutputComponent implements OnInit, AfterViewInit {
   }
 
   isDisabled(): boolean {
-    const disabled = !this.baseInput || (!this.repeats && this.tabName == '(generator)');
-    return disabled;
+    return !this.baseInput || (!this.repeats && this.tabName == '(generator)');
   }
 
   observeClipboardToInput(): void {

@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { filter, take } from 'rxjs';
 import { ITabItem } from '../../interfaces/tab-item.interface.interface';
 import { tabsList } from './helpers/tabsList';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-content',
@@ -10,7 +11,7 @@ import { tabsList } from './helpers/tabsList';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class ContentComponent implements OnInit{
+export class ContentComponent implements OnInit {
 
   tabsList: ITabItem[] = tabsList;
 
@@ -27,21 +28,23 @@ export class ContentComponent implements OnInit{
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.routeNavigationEnd();
+    this.handleRouteNavigationEnd();
   }
 
-  onTabNameSelected(event: {clipboardName: string, styleClass: string}): void {
-    this.selectedTab.clipboardName = event.clipboardName;
-    this.selectedTab.styleClass = event.styleClass;
+  onTabNameSelected(event: MenuItem) : void {
+    console.log('Event', event)
+    this.selectedTab.clipboardName = event.label!;
+    this.selectedTab.styleClass = event.styleClass!;
+    console.log('Event', this.selectedTab.clipboardName)
   }
 
-  routeNavigationEnd(): void{
+  handleRouteNavigationEnd(): void{
     this.router.events.pipe(
       filter((tabEvent) => {
         return tabEvent instanceof NavigationEnd
       }),
       take(1)
-    ).subscribe(() => {
+    ).subscribe((tabEvent) => {
       let prevTab = this.tabsList.find((tab) => {
         return tab.routerLink.includes(this.router.url)
         
