@@ -9,7 +9,7 @@
         <label for="userId" class="topic-label" [ngClass]="{'required': !supportUser}">Email or Phone:</label>
         <input pInputText id="userId" aria-describedby="topic-help" [(ngModel)]="supportUser" name="userForm"
             [pattern]="pattern" title="Enter a valid email or phone number" placeholder="Enter email or phone" required
-            #userForm="ngModel" />
+            (input)="onInputChange($event)" #userForm="ngModel" />
         <div *ngIf="userForm.invalid && userForm.touched" class="dang">
             <div class="text-danger" *ngIf="userForm.hasError('required')">Email or Phone is required.</div>
             <div class="text-danger" *ngIf="userForm.hasError('pattern')">Enter a valid email or phone number.</div>
